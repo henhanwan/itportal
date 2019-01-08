@@ -68,6 +68,7 @@
             <th scope="row"><?php echo $row->id_barang?></th>
             <td scope="row"><?php echo $row->nama_barang?></td>
             <td scope="row"><?php echo $row->status?></td>
+            <td scope="row"><?php echo $row->asset?></td>
             <td scope="row"><?php echo $row->cabang?></td>
             <td scope="row"><?php echo $row->divisi?></td>
             <td scope="row"><?php echo $row->tgl_pembelian?></td>
