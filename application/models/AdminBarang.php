@@ -37,7 +37,13 @@ function modalgetid(){
 }
 
 function getBarang($limit, $start){
-  $query = $this->db->get('barang', $limit, $start);
+  
+  // $this->db->from('barang');
+  $this->db->join('status_asset','status_asset.id_status = barang.id_status');
+  $this->db->join('d2_asset','d2_asset.id_d2 = barang.id_d2');
+  $this->db->join('cabang','cabang.id_cabang = barang.id_cabang');
+  $this->db->join('divisi','divisi.id_divisi = barang.id_divisi');
+  $query = $this->db->get('barang',$limit, $start);
 return $query;
 
 }
