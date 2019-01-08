@@ -258,18 +258,18 @@ var username=$("#username").val();
 
 $("select,#tgl_beli,#run_number").change(function(){
 //GET VALUE FROM SELECTED TEXT AND PARSE IT INTO HIDDEN INPUT
-var status_text = $("#status option:selected").text();
-$("#status_hidden").val(status_text);
-var asset_text = $("#d2 option:selected").text();
-$("#asset_hidden").val(asset_text);
-var cabang_text = $("#cabang option:selected").text();
-$("#cabang_hidden").val(cabang_text);
-var divisi_text = $("#divisi option:selected").text();
-$("#divisi_hidden").val(divisi_text);
-var kategori_text = $("#kategori option:selected").text();
-$("#kategori_hidden").val(kategori_text);
-var kategori2_text = $("#kategori2 option:selected").text();
-$("#kategori2_hidden").val(kategori2_text);
+// var status_text = $("#status option:selected").text();
+// $("#status_hidden").val(status_text);
+// var asset_text = $("#d2 option:selected").text();
+// $("#asset_hidden").val(asset_text);
+// var cabang_text = $("#cabang option:selected").text();
+// $("#cabang_hidden").val(cabang_text);
+// var divisi_text = $("#divisi option:selected").text();
+// $("#divisi_hidden").val(divisi_text);
+// var kategori_text = $("#kategori option:selected").text();
+// $("#kategori_hidden").val(kategori_text);
+// var kategori2_text = $("#kategori2 option:selected").text();
+// $("#kategori2_hidden").val(kategori2_text);
 
 //VALUE FOR SHOW SELECTED DROPDOWN
 var status = $("#status").children("option:selected").val();
