@@ -244,6 +244,7 @@ var username=$("#username").val();
       $("#divisi").val(data[0].id_divisi);
       $("#tgl_beli").val(data[0].tgl_pembelian);
       $("#kategori").val(data[0].id_kategori);
+      $("#kategori2").val(data[0].id_kategori2);
       $("#run_number").val(data[0].running_number);
       $("#update").modal('show');
 
