@@ -65,7 +65,6 @@
         <tbody>
 
           <tr>
-          test
             <th scope="row"><?php echo $row->id_barang?></th>
             <td scope="row"><?php echo $row->nama_barang?></td>
             <td scope="row"><?php echo $row->status?></td>
