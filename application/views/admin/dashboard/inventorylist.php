@@ -238,6 +238,14 @@ var username=$("#username").val();
       $("#id_barang").val(data[0].id_barang);
       $("#nama_barang").val(data[0].nama_barang);
       $("#password").val(data[0].password);
+      $("#status").val(data[0].id_status);
+      $("#asset").val(data[0].id_asset);
+      $("#d2").val(data[0].id_d2);
+      $("#cabang").val(data[0].id_cabang);
+      $("#divisi").val(data[0].id_divisi);
+      $("#tgl_beli").val(data[0].tgl_pembelian);
+      $("#kategori").val(data[0].id_kategori);
+      $("#run_number").val(data[0].running_number);
       $("#update").modal('show');
       console.log(data[0].id_barang);
 
