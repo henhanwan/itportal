@@ -222,6 +222,7 @@
   <script src="<?php echo base_url() ?>assets/bootstrap/bootstrap.min.js"></script>
 
   <script>
+  //EDIT DATA
 $(document).on('click', '.edit_data', function(){
 var id_barang =$(this).attr("id");
 var username=$("#username").val();
