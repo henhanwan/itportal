@@ -247,7 +247,6 @@ var username=$("#username").val();
       $("#kategori").val(data[0].id_kategori);
       $("#run_number").val(data[0].running_number);
       $("#update").modal('show');
-      console.log(data[0].id_barang);
 
     }
   })
