@@ -1,0 +1,133 @@
+
+body{
+  background-color:#556;
+  background-image: linear-gradient(30deg, #445 12%, transparent 12.5%, transparent 87%, #445 87.5%, #445),
+  linear-gradient(150deg, #445 12%, transparent 12.5%, transparent 87%, #445 87.5%, #445),
+  linear-gradient(30deg, #445 12%, transparent 12.5%, transparent 87%, #445 87.5%, #445),
+  linear-gradient(150deg, #445 12%, transparent 12.5%, transparent 87%, #445 87.5%, #445),
+  linear-gradient(60deg, #99a 25%, transparent 25.5%, transparent 75%, #99a 75%, #99a),
+  linear-gradient(60deg, #99a 25%, transparent 25.5%, transparent 75%, #99a 75%, #99a);
+  background-size:80px 140px;
+  background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
+}
+
+h1{
+  color: white;
+}
+
+a:link {
+    text-decoration: none;
+}
+a:visited {
+    text-decoration: none;
+}
+
+/* fix for topNavbar */
+.topNavbar
+{
+width: 100%;
+}
+
+.menu{
+    margin: 50px;
+    margin-top: 10px;
+}
+
+.announcer{
+  margin: 0px;
+}
+
+.table{
+
+  border-spacing: 60px;
+  border-radius: 5px;
+}
+
+.listUser{
+  background-color: white;
+  border-radius: 10px;
+
+}
+.table-users{
+
+
+    background-color: white;
+
+}
+
+.table-inventory{
+  background-color: white;
+  font-size: 12px;
+}
+
+.menu-button {
+  height: 175px;
+  width: 175px;
+  background-color:white;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  display: block;
+  border-radius: 10px;
+  opacity: 0.8;
+}
+
+.menu-button h3{
+font-family: sans-serif;
+text-align: center;
+top: 30%;
+position: relative;
+text-decoration: none;
+}
+
+
+.username{
+  margin-right: 10px;
+}
+
+.modal-adduser {
+		width: 600px;
+	}
+	.modal-adduser .modal-content {
+		padding: 20px;
+		border-radius: 1px;
+		border: none;
+	}
+	.modal-adduser .modal-header {
+		border-bottom: none;
+        position: relative;
+		justify-content: center;
+	}
+	.modal-adduser h4 {
+		text-align: center;
+		font-size: 26px;
+	}
+	.modal-adduser .form-control, .modal-adduser .btn {
+		min-height: 40px;
+		border-radius: 1px;
+	}
+	.modal-adduser .hint-text {
+		text-align: center;
+		padding-top: 10px;
+	}
+	.modal-adduser .close {
+        position: absolute;
+		top: -5px;
+		right: -5px;
+	}
+	.modal-adduser .btn {
+		background: #3498db;
+		border: none;
+		line-height: normal;
+	}
+	.modal-adduser .btn:hover, .modal-adduser .btn:focus {
+		background: #248bd0;
+	}
+	.modal-adduser .hint-text a {
+		color: #999;
+	}
+	.trigger-btn {
+		display: inline-block;
+		margin: 100px auto;
+	}

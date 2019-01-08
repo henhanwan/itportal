@@ -1,0 +1,31 @@
+19.09.2018
+
+1. Fix some home link for admin.
+    Before: redirect to home.PHP
+    After : redirect to dashadmin.PHP
+
+2. Add modal to adduser.
+    Before: no adduser form.
+    After : adduser form with modal (using login.css (copied to style.css and changed the style name))
+
+22.09.2018
+
+1. Fix home links for register session.
+    Before: If user bypass to home, it will back to home before login.
+    After : now redirect to dashadmin or dashuser
+
+24.09.2018
+
+1. Finish adduser form, now Integrated to DB.
+2. Add validation text if input is true.
+3. Fix primary key in DB.
+4. Add validation form for adduser form
+
+
+
+Tomorrow Plan:
+
+2. Finish list user with pagination.
+3. Finish UD (update and delete). Update and delete for user will be added in list user.
+4. Add modal for update and delete.
+5. Integrated user data to database.
