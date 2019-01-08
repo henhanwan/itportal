@@ -48,6 +48,7 @@
             <th scope="col">Asset Code</th>
             <th scope="col">Nama Barang</th>
             <th scope="col">Status</th>
+            <th scope="col">Asset</th>
             <th scope="col">Cabang</th>
             <th scope="col">Divisi</th>
             <th scope="col">Tanggal Pembelian</th>
