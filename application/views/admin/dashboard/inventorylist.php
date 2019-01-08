@@ -53,6 +53,7 @@
             <th scope="col">Divisi</th>
             <th scope="col">Tanggal Pembelian</th>
             <th scope="col">Kategori</th>
+            <th scope="col">Jenis</th>
             <th scope="col">Action</th>
           </tr>
 
