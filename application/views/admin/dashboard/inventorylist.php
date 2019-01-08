@@ -73,6 +73,7 @@
             <td scope="row"><?php echo $row->cabang?></td>
             <td scope="row"><?php echo $row->divisi?></td>
             <td scope="row"><?php echo $row->tgl_pembelian?></td>
+            <td scope="row"><?php echo $row->kategori?></td>
             <td scope="row"><?php echo $row->kategori2?></td>
             <td scope="row">
               <a href="<?php echo base_url(); ?>Admin/listinventory/delete/<?php echo $row->id_barang?>" role="button" class="btn btn-danger">Delete</a>
