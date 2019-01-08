@@ -237,7 +237,6 @@ var username=$("#username").val();
     success:function(data){
       $("#id_barang").val(data[0].id_barang);
       $("#nama_barang").val(data[0].nama_barang);
-      $("#password").val(data[0].password);
       $("#status").val(data[0].id_status);
       $("#asset").val(data[0].id_asset);
       $("#d2").val(data[0].id_d2);
