@@ -43,6 +43,8 @@ function getBarang($limit, $start){
   $this->db->join('d2_asset','d2_asset.id_d2 = barang.id_d2');
   $this->db->join('cabang','cabang.id_cabang = barang.id_cabang');
   $this->db->join('divisi','divisi.id_divisi = barang.id_divisi');
+  $this->db->join('kategori','kategori.id_kategori = barang.id_kategori');
+  $this->db->join('kategori2','kategori2.no = barang.no');
   $query = $this->db->get('barang',$limit, $start);
 return $query;
 
