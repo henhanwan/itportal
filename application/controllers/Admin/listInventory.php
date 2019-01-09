@@ -67,6 +67,7 @@ $this->pagination->initialize($config);
 	$data['users'] = $this->AdminUser->modalgetid();
   $data['judul'] = "Users";
 	$data['status_asset'] = $this->AdminBarang->get_status();
+	
 	$data['d2'] = $this->AdminBarang->get_d2();
 	$data['cabang'] = $this->AdminBarang->get_cabang();
 	$data['divisi'] = $this->AdminBarang->get_divisi();

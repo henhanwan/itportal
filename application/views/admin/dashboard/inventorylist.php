@@ -66,6 +66,7 @@
         <tbody>
 
           <tr>
+          
             <th scope="row"><?php echo $row->id_barang?></th>
             <td scope="row"><?php echo $row->nama_barang?></td>
             <td scope="row"><?php echo $row->status?></td>
@@ -224,6 +225,7 @@
   <script src="<?php echo base_url() ?>assets/bootstrap/bootstrap.min.js"></script>
 
   <script>
+
   //EDIT DATA
 $(document).on('click', '.edit_data', function(){
 var id_barang =$(this).attr("id");
@@ -243,10 +245,12 @@ var username=$("#username").val();
       $("#cabang").val(data[0].id_cabang);
       $("#divisi").val(data[0].id_divisi);
       $("#tgl_beli").val(data[0].tgl_pembelian);
-      $("#kategori").val(data[0].id_kategori);
+      }, 100);
       $("#kategori2").val(data[0].id_kategori2);
       $("#run_number").val(data[0].running_number);
       $("#update").modal('show');
+      
+
 
     }
   })
@@ -256,6 +260,7 @@ var username=$("#username").val();
 )
 
 $("select,#tgl_beli,#run_number").change(function(){
+
 //GET VALUE FROM SELECTED TEXT AND PARSE IT INTO HIDDEN INPUT
 // var status_text = $("#status option:selected").text();
 // $("#status_hidden").val(status_text);
@@ -283,6 +288,7 @@ var date = new Date(tgl_beli),
 var kategori= $("#kategori").children("option:selected").val();
 var kategori2= $("#kategori2").val();
 var run_number=$("#run_number").val();
+
 
 
 //GENERATE ASSETCODE
