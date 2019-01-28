@@ -116,6 +116,7 @@ $data = array(
 
 						 $this->AdminUser->update($data,$id);
 						 redirect('../admin/listUser');
+						 $this->AdminBarang->updateitem($data,$old_idbarang);
 }
 
 
