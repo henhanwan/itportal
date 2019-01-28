@@ -93,16 +93,16 @@
                  <div class="form-group">
                    <label class="control-label col-sm-4">Status Asset :</label>
                    <div class="col-sm-8">
-                   <?php echo form_dropdown('status', $status_asset, '','id="status" name="status1" class="form-control"');?>
-                   <input type="hidden" name="status" id="status_hidden">
+                   <?php echo form_dropdown('status', $status_asset, '','id="status" name="status" class="form-control"');?>
+                   <!-- <input type="hidden" name="status" id="status_hidden"> -->
                  </div>
                  </div>
 
                  <div class="form-group">
                    <label class="control-label col-sm-4">Asset:</label>
                    <div class="col-sm-8">
-                   <?php echo form_dropdown('asset', $d2, '','id="d2" name="asset1" class="form-control"');?>
-                   <input type="hidden" name="asset" id="asset_hidden">
+                   <?php echo form_dropdown('asset', $d2, '','id="d2" name="asset" class="form-control"');?>
+                   <!-- <input type="hidden" name="asset" id="asset_hidden"> -->
                  </div>
                  </div>
 
@@ -110,7 +110,7 @@
                    <label class="control-label col-sm-4">Cabang:</label>
                    <div class="col-sm-8">
                    <?php echo form_dropdown('cabang', $cabang, '','id="cabang" name="cabang1" class="form-control"');?>
-                   <input type="hidden" name="cabang" id="cabang_hidden">
+                   <!-- <input type="hidden" name="cabang" id="cabang_hidden"> -->
                  </div>
                  </div>
 
@@ -118,7 +118,7 @@
                    <label class="control-label col-sm-4">Divisi:</label>
                    <div class="col-sm-8">
                    <?php echo form_dropdown('divisi', $divisi, '','id="divisi" name="divisi1" class="form-control"');?>
-                   <input type="hidden" name="divisi" id="divisi_hidden">
+                   <!-- <input type="hidden" name="divisi" id="divisi_hidden"> -->
                  </div>
                  </div>
 
@@ -132,8 +132,8 @@
                  <div class="form-group">
                    <label class="control-label col-sm-4">Kategori:</label>
                    <div class="col-sm-8">
-                   <?php echo form_dropdown('kategori', $kategori, '','id="kategori" name="kategori1" class="form-control"');?>
-                   <input type="hidden" name="kategori" id="kategori_hidden">
+                   <?php echo form_dropdown('kategori', $kategori, '','id="kategori" name="kategori" class="form-control"');?>
+                   <!-- <input type="hidden" name="kategori" id="kategori_hidden"> -->
                  </div>
                  </div>
 
@@ -141,9 +141,9 @@
                    <label class="control-label col-sm-4">Kategori 2:</label>
                    <div class="col-sm-8">
                      <!-- <select name="kategori2" id="kategori2" class="form-control"> -->
-                     <?php echo form_dropdown('kategori2', $kategori2, '','id="kategori2" name="kategori21" class="form-control"');?>
+                     <?php echo form_dropdown('kategori2', $kategori2, '','id="kategori2" name="kategori2" class="form-control"');?>
                      <!-- </select> -->
-                     <input type="hidden" name="kategori2" id="kategori2_hidden">
+                     <input type="hidden" id="number" name="number" id="kategori2_hidden">
                  </div>
                  </div>
 
@@ -178,18 +178,18 @@
 
 $("select,#tgl_beli,#run_number").change(function(){
 //GET VALUE FROM SELECTED TEXT AND PARSE IT INTO HIDDEN INPUT
-var status_text = $("#status option:selected").text();
-$("#status_hidden").val(status_text);
-var asset_text = $("#d2 option:selected").text();
-$("#asset_hidden").val(asset_text);
-var cabang_text = $("#cabang option:selected").text();
-$("#cabang_hidden").val(cabang_text);
-var divisi_text = $("#divisi option:selected").text();
-$("#divisi_hidden").val(divisi_text);
-var kategori_text = $("#kategori option:selected").text();
-$("#kategori_hidden").val(kategori_text);
-var kategori2_text = $("#kategori2 option:selected").text();
-$("#kategori2_hidden").val(kategori2_text);
+// var status_text = $("#status option:selected").text();
+// $("#status_hidden").val(status_text);
+// var asset_text = $("#d2 option:selected").text();
+// $("#asset_hidden").val(asset_text);
+// var cabang_text = $("#cabang option:selected").text();
+// $("#cabang_hidden").val(cabang_text);
+// var divisi_text = $("#divisi option:selected").text();
+// $("#divisi_hidden").val(divisi_text);
+// var kategori_text = $("#kategori option:selected").text();
+// $("#kategori_hidden").val(kategori_text);
+// var kategori2_text = $("#kategori2 option:selected").text();
+// $("#kategori2_hidden").val(kategori2_text);
 
 //VALUE FOR SHOW SELECTED DROPDOWN
 var status = $("#status").children("option:selected").val();
@@ -217,9 +217,19 @@ var run_number=$("#run_number").val();
   assetcode[6] = kategori;
   assetcode[7] = kategori2;
   assetcode[8] = run_number;
-
+  
    $( "#id_barang" ).val(assetcode.join(''));
+
+   var number = [];
+  number[0] = kategori;
+  number[1] = kategori2;
+
+  $( "#number" ).val(number.join(''));
+   
 });
+
+
+
 
 //KATEGORI DEPENDENT DROPDOWN
 $("#kategori").change(function(){
@@ -235,6 +245,7 @@ if(kategori != '')
   success:function(data)
     {
       $('#kategori2').html(data);
+     
     }
   });
 }

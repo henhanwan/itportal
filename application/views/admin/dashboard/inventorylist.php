@@ -124,12 +124,13 @@
 
                 <!--<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> -->
               <!--<i class="fa fa-info-circle"></i>  <strong>Like SB Admin?</strong> Try out <a href="http://startbootstrap.com/template-overviews/sb-admin-2" class="alert-link">SB Admin 2</a> for additional features! -->
-              <form class="form-horizontal" role="form" method="post" action="<?php echo base_url('admin/listUser/edituser'); ?>">
+              <form class="form-horizontal" role="form" method="post" action="<?php echo base_url('admin/listInventory/editItem'); ?>">
 
                 <div class="form-group">
                   <label class="control-label col-sm-4">Kode Asset:</label>
                   <div class="col-sm-8">
                   <input class="form-control" readonly="readonly" placeholder="kode asset" name="id_barang" id="id_barang"></input>
+                  <input type="hidden" name="old_idbarang" id="old_idbarang">
                 </div>
                 </div>
 
@@ -143,32 +144,32 @@
                  <div class="form-group">
                    <label class="control-label col-sm-4">Status Asset :</label>
                    <div class="col-sm-8">
-                   <?php echo form_dropdown('status', $status_asset, '','id="status" name="status1" class="form-control"');?>
-                   <input type="hidden" name="status" id="status_hidden">
+                   <?php echo form_dropdown('status', $status_asset, '','id="status" name="status" class="form-control"');?>
+                   <!-- <input type="hidden" name="status" id="status_hidden"> -->
                  </div>
                  </div>
 
                  <div class="form-group">
                    <label class="control-label col-sm-4">Asset:</label>
                    <div class="col-sm-8">
-                   <?php echo form_dropdown('asset', $d2, '','id="d2" name="asset1" class="form-control"');?>
-                   <input type="hidden" name="asset" id="asset_hidden">
+                   <?php echo form_dropdown('asset', $d2, '','id="d2" name="asset" class="form-control"');?>
+                   <!-- <input type="hidden" name="asset" id="asset_hidden"> -->
                  </div>
                  </div>
 
                  <div class="form-group">
                    <label class="control-label col-sm-4">Cabang:</label>
                    <div class="col-sm-8">
-                   <?php echo form_dropdown('cabang', $cabang, '','id="cabang" name="cabang1" class="form-control"');?>
-                   <input type="hidden" name="cabang" id="cabang_hidden">
+                   <?php echo form_dropdown('cabang', $cabang, '','id="cabang" name="cabang" class="form-control"');?>
+                   <!-- <input type="hidden" name="cabang" id="cabang_hidden"> -->
                  </div>
                  </div>
 
                  <div class="form-group">
                    <label class="control-label col-sm-4">Divisi:</label>
                    <div class="col-sm-8">
-                   <?php echo form_dropdown('divisi', $divisi, '','id="divisi" name="divisi1" class="form-control"');?>
-                   <input type="hidden" name="divisi" id="divisi_hidden">
+                   <?php echo form_dropdown('divisi', $divisi, '','id="divisi" name="divisi" class="form-control"');?>
+                   <!-- <input type="hidden" name="divisi" id="divisi_hidden"> -->
                  </div>
                  </div>
 
@@ -182,8 +183,8 @@
                  <div class="form-group">
                    <label class="control-label col-sm-4">Kategori:</label>
                    <div class="col-sm-8">
-                   <?php echo form_dropdown('kategori', $kategori, '','id="kategori" name="kategori1" class="form-control"');?>
-                   <input type="hidden" name="kategori" id="kategori_hidden">
+                   <?php echo form_dropdown('kategori', $kategori, '','id="kategori" name="kategori" class="form-control"');?>
+                   <!-- <input type="hidden" name="kategori" id="kategori_hidden"> -->
                  </div>
                  </div>
 
@@ -191,9 +192,9 @@
                    <label class="control-label col-sm-4">Kategori 2:</label>
                    <div class="col-sm-8">
                      <!-- <select name="kategori2" id="kategori2" class="form-control"> -->
-                     <?php echo form_dropdown('kategori2', $kategori2, '','id="kategori2" name="kategori21" class="form-control"');?>
+                     <?php echo form_dropdown('kategori2', $kategori2, '','id="kategori2" name="kategori2" class="form-control"');?>
                      <!-- </select> -->
-                     <input type="hidden" name="kategori2" id="kategori2_hidden">
+                     <input type="hidden" name="number" id="number">
                  </div>
                  </div>
 
@@ -238,6 +239,7 @@ var username=$("#username").val();
     data:{id_barang:id_barang},
     success:function(data){
       $("#id_barang").val(data[0].id_barang);
+      $("#old_idbarang").val(data[0].id_barang);
       $("#nama_barang").val(data[0].nama_barang);
       $("#status").val(data[0].id_status);
       $("#asset").val(data[0].id_asset);
@@ -245,6 +247,9 @@ var username=$("#username").val();
       $("#cabang").val(data[0].id_cabang);
       $("#divisi").val(data[0].id_divisi);
       $("#tgl_beli").val(data[0].tgl_pembelian);
+      $("#kategori").val(data[0].id_kategori).change();
+      setTimeout(function(){
+        $("#kategori2").val(data[0].id_kategori2);
       }, 100);
       $("#kategori2").val(data[0].id_kategori2);
       $("#run_number").val(data[0].running_number);
@@ -304,6 +309,13 @@ var run_number=$("#run_number").val();
   assetcode[8] = run_number;
 
    $( "#id_barang" ).val(assetcode.join(''));
+
+   var number = [];
+  number[0] = kategori;
+  number[1] = kategori2;
+
+  $( "#number" ).val(number.join(''));
+
 });
 
 //KATEGORI DEPENDENT DROPDOWN

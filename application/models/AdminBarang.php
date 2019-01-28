@@ -56,8 +56,8 @@ function getID($where){
   return $this->db->get('barang')->result();
 }
 
-  public function update($data, $id) {
-        $this->db->where('id_barang',$id);
+  public function updateitem($data, $old_idbarang) {
+        $this->db->where('id_barang',$old_idbarang);
         $this->db->update('barang', $data);
         return TRUE;
  }

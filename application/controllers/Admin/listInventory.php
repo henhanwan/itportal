@@ -93,11 +93,17 @@ $level = $this->input->post('optlevel');
 $active = $this->input->post('optactive');
 
 $data = array(
-	'id' => $id,
-	'username' => $username,
-	'password' => md5($password),
-	'level' => $level,
-	'active' => $active
+	'id_barang' => $idbarang,
+		'nama_barang' => $namabarang,
+		'id_status' => $status,
+		'id_d2' => $asset,
+		'id_cabang' => $cabang,
+		'id_divisi' => $divisi,
+		'tgl_pembelian' => $tgl_beli,
+		'id_kategori' => $kategori,
+		'no' => $number,
+		'id_kategori2' => $kategori2,
+		'running_number' => $runnumber
 	);
 
 

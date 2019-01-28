@@ -80,18 +80,20 @@ class Inventory extends CI_Controller {
 	$tgl_beli = $this->input->post('tgl_beli');
 	$kategori = $this->input->post('kategori');
 	$kategori2 = $this->input->post('kategori2');
+	$number = $this ->input->post('number');
 	$runnumber = $this->input->post('run_number');
 
 	$data = array(
 		'id_barang' => $idbarang,
 		'nama_barang' => $namabarang,
-		'status' => $status,
-		'asset' => $asset,
-		'cabang' => $cabang,
-		'divisi' => $divisi,
+		'id_status' => $status,
+		'id_d2' => $asset,
+		'id_cabang' => $cabang,
+		'id_divisi' => $divisi,
 		'tgl_pembelian' => $tgl_beli,
-		'kategori' => $kategori,
-		'kategori2' => $kategori2,
+		'id_kategori' => $kategori,
+		'no' => $number,
+		'id_kategori2' => $kategori2,
 		'running_number' => $runnumber
 		);
 
