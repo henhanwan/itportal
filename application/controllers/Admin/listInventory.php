@@ -86,11 +86,18 @@ public function edituser()
 
 $this->load->library('session');
 $this->load->library('form_validation');
-$id = $this->input->post('id');
-$username = $this->input->post('username');
-$password = $this->input->post('password');
-$level = $this->input->post('optlevel');
-$active = $this->input->post('optactive');
+$idbarang = $this->input->post('id_barang');
+$old_idbarang = $this->input->post('old_idbarang');
+$namabarang = $this->input->post('nama_barang');
+$status = $this->input->post('status');
+$asset = $this->input->post('asset');
+$cabang = $this->input->post('cabang');
+$divisi = $this->input->post('divisi');
+$tgl_beli = $this->input->post('tgl_beli');
+$kategori = $this->input->post('kategori');
+$number = $this->input->post('number');
+$kategori2 = $this->input->post('kategori2');
+$runnumber = $this->input->post('run_number');
 
 $data = array(
 	'id_barang' => $idbarang,
