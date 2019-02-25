@@ -50,6 +50,11 @@ return $query;
 
 }
 
+function getBarangWhereLike($field, $search){
+  $query = $this->db->like($field, $search)->order_by('tgl_pembelian')->get('barang');
+  return $query->result();
+}
+
 
 function getID($where){
   $this->db->where($where);
@@ -121,6 +126,8 @@ function getID($where){
    $kategori[''] = 'Select kategori';
         return $kategori;
  }
+
+ 
 
  public function fetch_kat2($id_kategori){
    $result = $this->db->where('id_kategori',$id_kategori)->get('kategori2')->result();

@@ -73,33 +73,45 @@ class Inventory extends CI_Controller {
 	$this->load->model('AdminBarang');
 	$idbarang = $this->input->post('id_barang');
 	$namabarang = $this->input->post('nama_barang');
-	$status = $this->input->post('status');
-	$asset = $this->input->post('asset');
-	$cabang = $this->input->post('cabang');
-	$divisi = $this->input->post('divisi');
+	$idstatus = $this->input->post('status');
+	$status = $this->input->post('status_hidden');
+	$idasset = $this->input->post('asset');
+	$asset = $this->input->post('asset_hidden');
+	$idcabang = $this->input->post('cabang');
+	$cabang = $this->input->post('cabang_hidden');
+	$iddivisi = $this->input->post('divisi');
+	$divisi = $this->input->post('divisi_hidden');
 	$tgl_beli = $this->input->post('tgl_beli');
-	$kategori = $this->input->post('kategori');
-	$kategori2 = $this->input->post('kategori2');
+	$kategori = $this->input->post('kategori_hidden');
+	$idkategori = $this->input->post('kategori');
+	$kategori2 = $this->input->post('kategori2_hidden');
+	$idkategori2 = $this->input->post('kategori2');
 	$number = $this ->input->post('number');
 	$runnumber = $this->input->post('run_number');
 
 	$data = array(
 		'id_barang' => $idbarang,
 		'nama_barang' => $namabarang,
-		'id_status' => $status,
-		'id_d2' => $asset,
-		'id_cabang' => $cabang,
-		'id_divisi' => $divisi,
+		'status' => $status,
+		'id_status' => $idstatus,
+		'asset' => $asset,
+		'id_d2' => $idasset,
+		'cabang' => $cabang,
+		'id_cabang' => $idcabang,
+		'divisi' => $divisi,
+		'id_divisi' => $iddivisi,
 		'tgl_pembelian' => $tgl_beli,
-		'id_kategori' => $kategori,
+		'kategori' => $kategori,
+		'id_kategori' => $idkategori,
 		'no' => $number,
-		'id_kategori2' => $kategori2,
+		'kategori2' => $kategori2,
+		'id_kategori2' => $idkategori2,
 		'running_number' => $runnumber
 		);
 
 		$query=$this->AdminBarang->insert($data,'barang');
 	$this->session->set_flashdata('success','Data Yang anda masukan berhasil.');
-	redirect('../admin/Inventory');
+	redirect('../admin/listinventory');
 
 	}
 	}

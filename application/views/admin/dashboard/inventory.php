@@ -43,13 +43,26 @@
       <?php endif; ?>
 <!-- INVENTORY MENU -->
     <div class="col-sm-3 menu-button">
-      <h3><a href="#addbarang" data-toggle="modal">Add Item</a></h3>
+      <h3><a href="#addbarang" data-toggle="modal">Add Asset</a></h3>
     </div>
     <div class="col-sm-3 menu-button">
-      <h3><a href="listinventory">List Item</a></h3>
+      <h3><a href="listinventory">List Asset</a></h3>
+    </div>
+    <div class="col-sm-12">
+    
+    </div>
+    
+    
+    
+    <div class="col-sm-3 menu-button">
+      <h3><a href="#addstock" data-toggle="modal">Add Stock</a></h3>
+    </div>
+    <div class="col-sm-3 menu-button">
+      <h3><a href="liststock">List Stock</a></h3>
     </div>
   
   </div>
+  
 
 <!-- SIDENAV -->
     <div class="container-fluid col-sm-3 sidenav ">
@@ -94,7 +107,7 @@
                    <label class="control-label col-sm-4">Status Asset :</label>
                    <div class="col-sm-8">
                    <?php echo form_dropdown('status', $status_asset, '','id="status" name="status" class="form-control"');?>
-                   <!-- <input type="hidden" name="status" id="status_hidden"> -->
+                   <input type="hidden" name="status_hidden" id="status_hidden">
                  </div>
                  </div>
 
@@ -102,23 +115,23 @@
                    <label class="control-label col-sm-4">Asset:</label>
                    <div class="col-sm-8">
                    <?php echo form_dropdown('asset', $d2, '','id="d2" name="asset" class="form-control"');?>
-                   <!-- <input type="hidden" name="asset" id="asset_hidden"> -->
+                   <input type="hidden" name="asset_hidden" id="asset_hidden">
                  </div>
                  </div>
 
                  <div class="form-group">
                    <label class="control-label col-sm-4">Cabang:</label>
                    <div class="col-sm-8">
-                   <?php echo form_dropdown('cabang', $cabang, '','id="cabang" name="cabang1" class="form-control"');?>
-                   <!-- <input type="hidden" name="cabang" id="cabang_hidden"> -->
+                   <?php echo form_dropdown('cabang', $cabang, '','id="cabang" name="cabang" class="form-control"');?>
+                   <input type="hidden" name="cabang_hidden" id="cabang_hidden">
                  </div>
                  </div>
 
                  <div class="form-group">
                    <label class="control-label col-sm-4">Divisi:</label>
                    <div class="col-sm-8">
-                   <?php echo form_dropdown('divisi', $divisi, '','id="divisi" name="divisi1" class="form-control"');?>
-                   <!-- <input type="hidden" name="divisi" id="divisi_hidden"> -->
+                   <?php echo form_dropdown('divisi', $divisi, '','id="divisi" name="divisi" class="form-control"');?>
+                   <input type="hidden" name="divisi_hidden" id="divisi_hidden">
                  </div>
                  </div>
 
@@ -133,7 +146,7 @@
                    <label class="control-label col-sm-4">Kategori:</label>
                    <div class="col-sm-8">
                    <?php echo form_dropdown('kategori', $kategori, '','id="kategori" name="kategori" class="form-control"');?>
-                   <!-- <input type="hidden" name="kategori" id="kategori_hidden"> -->
+                  <input type="hidden" name="kategori_hidden" id="kategori_hidden">
                  </div>
                  </div>
 
@@ -143,7 +156,8 @@
                      <!-- <select name="kategori2" id="kategori2" class="form-control"> -->
                      <?php echo form_dropdown('kategori2', $kategori2, '','id="kategori2" name="kategori2" class="form-control"');?>
                      <!-- </select> -->
-                     <input type="hidden" id="number" name="number" id="kategori2_hidden">
+                     <input type="hidden" name="kategori2_hidden" id="kategori2_hidden">
+                     <input type="hidden" name="number" id="number">
                  </div>
                  </div>
 
@@ -178,18 +192,18 @@
 
 $("select,#tgl_beli,#run_number").change(function(){
 //GET VALUE FROM SELECTED TEXT AND PARSE IT INTO HIDDEN INPUT
-// var status_text = $("#status option:selected").text();
-// $("#status_hidden").val(status_text);
-// var asset_text = $("#d2 option:selected").text();
-// $("#asset_hidden").val(asset_text);
-// var cabang_text = $("#cabang option:selected").text();
-// $("#cabang_hidden").val(cabang_text);
-// var divisi_text = $("#divisi option:selected").text();
-// $("#divisi_hidden").val(divisi_text);
-// var kategori_text = $("#kategori option:selected").text();
-// $("#kategori_hidden").val(kategori_text);
-// var kategori2_text = $("#kategori2 option:selected").text();
-// $("#kategori2_hidden").val(kategori2_text);
+var status_text = $("#status option:selected").text();
+$("#status_hidden").val(status_text);
+var asset_text = $("#d2 option:selected").text();
+$("#asset_hidden").val(asset_text);
+var cabang_text = $("#cabang option:selected").text();
+$("#cabang_hidden").val(cabang_text);
+var divisi_text = $("#divisi option:selected").text();
+$("#divisi_hidden").val(divisi_text);
+var kategori_text = $("#kategori option:selected").text();
+$("#kategori_hidden").val(kategori_text);
+var kategori2_text = $("#kategori2 option:selected").text();
+$("#kategori2_hidden").val(kategori2_text);
 
 //VALUE FOR SHOW SELECTED DROPDOWN
 var status = $("#status").children("option:selected").val();

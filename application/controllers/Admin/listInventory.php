@@ -61,11 +61,23 @@ public function index()
 $this->pagination->initialize($config);
         $data['page'] = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
 
+				$filter = $this->input->post('filter');
+        $field  = $this->input->post('field');
+				$search = $this->input->post('search');
+				
+				if (isset($filter) && !empty($search)) {
+					$this->load->model('AdminBarang');
+					$data['students'] = $this->AdminBarang->getBarangWhereLike($field, $search);
+			} else {
+				$this->load->model('AdminBarang');
+					// $this->load->model('students/Student_Model');
+					$data['data'] = $this->AdminBarang->getBarang($config["per_page"], $data['page']);
+			}
 
-  $data['data'] = $this->AdminBarang->getBarang($config["per_page"], $data['page']);
-  $data['pagination'] = $this->pagination->create_links();
+  	$data['data'] = $this->AdminBarang->getBarang($config["per_page"], $data['page']);
+  	$data['pagination'] = $this->pagination->create_links();
 	$data['users'] = $this->AdminUser->modalgetid();
-  $data['judul'] = "Users";
+  	$data['judul'] = "Users";
 	$data['status_asset'] = $this->AdminBarang->get_status();
 	
 	$data['d2'] = $this->AdminBarang->get_d2();
@@ -81,7 +93,7 @@ $this->load->view('admin/dashboard/inventorylist.php',$data);
 }
 
 
-public function edituser()
+public function editItem()
 {
 
 $this->load->library('session');
@@ -89,34 +101,46 @@ $this->load->library('form_validation');
 $idbarang = $this->input->post('id_barang');
 $old_idbarang = $this->input->post('old_idbarang');
 $namabarang = $this->input->post('nama_barang');
-$status = $this->input->post('status');
-$asset = $this->input->post('asset');
-$cabang = $this->input->post('cabang');
-$divisi = $this->input->post('divisi');
+$idstatus = $this->input->post('status');
+$status = $this->input->post('status_hidden');
+$idasset = $this->input->post('asset');
+$asset = $this->input->post('asset_hidden');
+$idcabang = $this->input->post('cabang');
+$cabang = $this->input->post('cabang_hidden');
+$iddivisi = $this->input->post('divisi');
+$divisi = $this->input->post('divisi_hidden');
 $tgl_beli = $this->input->post('tgl_beli');
-$kategori = $this->input->post('kategori');
-$number = $this->input->post('number');
-$kategori2 = $this->input->post('kategori2');
+$kategori = $this->input->post('kategori_hidden');
+$idkategori = $this->input->post('kategori');
+$kategori2 = $this->input->post('kategori2_hidden');
+$idkategori2 = $this->input->post('kategori2');
+$number = $this ->input->post('number');
 $runnumber = $this->input->post('run_number');
 
 $data = array(
 	'id_barang' => $idbarang,
 		'nama_barang' => $namabarang,
-		'id_status' => $status,
-		'id_d2' => $asset,
-		'id_cabang' => $cabang,
-		'id_divisi' => $divisi,
+		'status' => $status,
+		'id_status' => $idstatus,
+		'asset' => $asset,
+		'id_d2' => $idasset,
+		'cabang' => $cabang,
+		'id_cabang' => $idcabang,
+		'divisi' => $divisi,
+		'id_divisi' => $iddivisi,
 		'tgl_pembelian' => $tgl_beli,
-		'id_kategori' => $kategori,
+		'kategori' => $kategori,
+		'id_kategori' => $idkategori,
 		'no' => $number,
-		'id_kategori2' => $kategori2,
+		'kategori2' => $kategori2,
+		'id_kategori2' => $idkategori2,
 		'running_number' => $runnumber
 	);
 
 
-						 $this->AdminUser->update($data,$id);
-						 redirect('../admin/listUser');
 						 $this->AdminBarang->updateitem($data,$old_idbarang);
+						 
+						redirect('../admin/listInventory');
 }
 
 
