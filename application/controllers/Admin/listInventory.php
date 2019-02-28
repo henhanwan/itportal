@@ -58,23 +58,27 @@ public function index()
         $config['last_tag_open']    = '<li class="page-item"><span class="page-link">';
         $config['last_tagl_close']  = '</span></li>';
 
-$this->pagination->initialize($config);
+	$this->pagination->initialize($config);
         $data['page'] = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
 
-				$filter = $this->input->post('filter');
+	$filter = $this->input->post('filter');
         $field  = $this->input->post('field');
-				$search = $this->input->post('search');
-				
-				if (isset($filter) && !empty($search)) {
-					$this->load->model('AdminBarang');
-					$data['students'] = $this->AdminBarang->getBarangWhereLike($field, $search);
-			} else {
-				$this->load->model('AdminBarang');
-					// $this->load->model('students/Student_Model');
-					$data['data'] = $this->AdminBarang->getBarang($config["per_page"], $data['page']);
-			}
-
-  	$data['data'] = $this->AdminBarang->getBarang($config["per_page"], $data['page']);
+	$search = $this->input->post('search');
+	/*			
+	if (isset($filter) && !empty($search)) {
+		$this->load->model('AdminBarang');
+		$data['students'] = $this->AdminBarang->getBarangWhereLike($field, $search);
+	} else {
+		$this->load->model('AdminBarang');
+		// $this->load->model('students/Student_Model');
+		$data['data'] = $this->AdminBarang->getBarang($config["per_page"], $data['page']);
+	}
+	*/
+	if (isset($filter) && !empty($search)) {
+  		$data['data'] = $this->AdminBarang->getBarang($config["per_page"], $data['page'], $field, $search);
+	}else{
+		$data['data'] = $this->AdminBarang->getBarang($config["per_page"], $data['page']);
+	}
   	$data['pagination'] = $this->pagination->create_links();
 	$data['users'] = $this->AdminUser->modalgetid();
   	$data['judul'] = "Users";
