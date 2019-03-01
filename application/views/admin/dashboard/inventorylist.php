@@ -56,9 +56,9 @@
             <option selected="selected" disabled="disabled" value="">Filter By</option>
             <option value="id_barang">Asset Code</option>
             <option value="nama_barang">Nama Barang</option>
-            <option value="status">Status</option>
-            <option value="email">Asset</option>
-            <option value="email">Cabang</option>
+            <option value="status_asset">Status</option>
+            <option value="asset">Asset</option>
+            <option value="cabang">Cabang</option>
             <option value="divisi">Divisi</option>
             <option value="kategori">Kategori</option>
             <option value="kategori2">Jenis</option>
