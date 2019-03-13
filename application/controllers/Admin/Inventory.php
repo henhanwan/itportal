@@ -116,6 +116,103 @@ class Inventory extends CI_Controller {
 	}
 	}
 
+
+	public function addstock()
+	{
+		// $this->load->view('admin/dashboard/adduser.php');
+		$this->load->library('session');
+	$this->load->library('form_validation');
+	$this->form_validation->set_rules('nama_stock', 'Nama Stock', 'trim|required|min_length[10]');
+	$this->form_validation->set_rules('quantity', 'Quantity', 'trim|required|callback_stock_valout');
+	$this->form_validation->set_rules('tgl_inout', 'Tanggal IN / OUT', 'trim|required|callback_stock_valtgl');
+	$this->form_validation->set_rules('vendor', 'Nama Vendor', 'trim|required');
+	$this->form_validation->set_rules('no_po','No PO','trim|required');
+	$this->form_validation->set_rules('nama_emp', 'Nama Employee', 'trim|required');
+
+	if($this->form_validation->run() == FALSE)
+	{
+
+				$this->session->set_flashdata('errors', validation_errors());
+				redirect('../admin/inventory');
+			}
+
+			else
+
+			{
+	$this->load->model('AdminStock');
+	// $idtrans = $this->input->post('id_barang');
+	$namastock = $this->input->post('nama_stock');
+	$optinout = $this->input->post('optinout');
+	$quantity = $this->input->post('quantity');
+	$tanggal = $this->input->post('tgl_inout');
+	$vendor = $this->input->post('vendor');
+	$no_po = $this->input->post('no_po');
+	$nama_emp = $this->input->post('nama_emp');
+
+	$data = array(
+		// 'id_barang' => $idbarang,
+		'nama_stock' => $namastock,
+		'inout' => $optinout,
+		'quantity' => $quantity,
+		'tanggal' => $tanggal,
+		'vendor' => $vendor,
+		'no_po' => $no_po,
+		'nama_emp' => $nama_emp
+		);
+
+		$data2 = array(
+			'nama_stock' => $namastock,
+			'last_in' => $tanggal,
+			'quantity' => $quantity
+		);
+
+
+
+		$query=$this->AdminStock->insert($data,'stock_trans',$data2,'stock',$namastock,$optinout,$quantity,$tanggal);
+
+
+
+	$this->session->set_flashdata('success','Data Yang anda masukan berhasil.');
+	redirect('../admin/liststock');
+
+	}
+	}
+
+//VALIDASI STOCK CONTROLLER
+public function stock_valout()
+{
+$this->load->model('AdminStock');
+$namastock = $this->input->post('nama_stock');
+$quantity = $this->input->post('quantity');
+$optinout = $this->input->post('optinout');
+$stockval=$this->AdminStock->stockval($quantity,$optinout,$namastock);
+	if($stockval==TRUE){
+		$this->form_validation->set_message('stock_valout','Out quantity melebihi stock quantity ');
+		return FALSE;
+	}
+	elseif($stockval==FALSE) {
+		return TRUE;
+	}
+}
+
+//VALIDASI TANGGAL CONTROLLER
+public function stock_valtgl()
+{
+$this->load->model('AdminStock');
+$namastock = $this->input->post('nama_stock');
+$tanggal = $this->input->post('tgl_inout');
+$optinout = $this->input->post('optinout');
+$stocktgl=$this->AdminStock->stocktgl($tanggal,$optinout,$namastock);
+	if($stocktgl==TRUE){
+		$this->form_validation->set_message('stock_valtgl','Tanggal out tidak valid');
+		return FALSE;
+	}
+	elseif($stocktgl==FALSE) {
+		return TRUE;
+	}
+}
+
+
 public function fetch_kat2()
 	{
 		if($this->input->post('id_kategori'))
