@@ -49,20 +49,23 @@
       <h3><a href="listinventory">List Asset</a></h3>
     </div>
     <div class="col-sm-12">
-    
+
     </div>
-    
-    
+
+
     
     <div class="col-sm-3 menu-button">
-      <h3><a href="#addstock" data-toggle="modal">Add Stock</a></h3>
+      <h3><a href="#addstock" data-toggle="modal">Add Stock IN/OUT</a></h3>
     </div>
     <div class="col-sm-3 menu-button">
       <h3><a href="liststock">List Stock</a></h3>
     </div>
-  
+    <div class="col-sm-3 menu-button">
+      <h3><a href="liststock">List Stock IN/OUT</a></h3>
+    </div>
+
   </div>
-  
+
 
 <!-- SIDENAV -->
     <div class="container-fluid col-sm-3 sidenav ">
@@ -78,7 +81,7 @@
   </div>
 </div>
 
-<!-- MODAL FOR ADDING ITEM  -->
+<!-- MODAL FOR ADDING ITEM ASSET -->
   <div id="addbarang" class="modal fade">
   	<div class="modal-dialog modal-adduser">
   		<div class="modal-content">
@@ -181,6 +184,81 @@
   	</div>
   </div>
 
+  <!-- MODAL FOR ADDING ITEM STOCK -->
+  <div id="addstock" class="modal fade">
+  	<div class="modal-dialog modal-adduser">
+  		<div class="modal-content">
+  			<div class="modal-header">
+  				<h4 class="modal-title">Add Stock</h4>
+  				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  			</div>
+  			<div class="modal-body">
+                <form class="form-horizontal" role="form" method="post" action="<?php echo base_url('admin/Inventory/addstock'); ?>">
+
+
+                 <div class="form-group">
+                   <label class="control-label col-sm-4">Nama Stock :</label>
+                   <div class="col-sm-8">
+                   <input class="form-control" placeholder="Nama Stock" name="nama_stock"></input>
+                 </div>
+                 </div>
+
+                 <div class="form-group">
+                   <label class="control-label col-sm-4">IN / OUT  :</label>
+                   <div class="col-sm-8">
+                   <label class="radio-inline"><input type="radio" name="optinout" value="in">in</label>
+                   <label class="radio-inline"><input type="radio" name="optinout" value="out">out</label>
+                 </div>
+                 </div>
+
+                 <div class="form-group">
+                   <label class="control-label col-sm-4">Quantity :</label>
+                   <div class="col-sm-8">
+                   <input class="form-control" placeholder="Quantity" name="quantity"></input>
+                 </div>
+                 </div>
+
+                 <div class="form-group">
+                   <label class="control-label col-sm-4">Tanggal:</label>
+                   <div class="col-sm-8">
+                   <input type="date" name="tgl_inout" id="tgl_inout" class="form-control"></input>
+                 </div>
+                 </div>
+
+                 <div class="form-group">
+                   <label class="control-label col-sm-4">Vendor :</label>
+                   <div class="col-sm-8">
+                   <input class="form-control" placeholder="Nama Vendor" name="vendor"></input>
+                 </div>
+                 </div>
+
+                 <div class="form-group">
+                   <label class="control-label col-sm-4">NO PO :</label>
+                   <div class="col-sm-8">
+                   <input class="form-control" placeholder="NO PO" name="no_po"></input>
+                 </div>
+                 </div>
+
+                 <div class="form-group">
+                   <label class="control-label col-sm-4">Nama Employee :</label>
+                   <div class="col-sm-8">
+                   <input class="form-control" placeholder="Nama Employee" name="nama_emp"></input>
+                 </div>
+                 </div>
+
+                 <div class="form-group">
+                   <div class="col-sm-4"></div>
+                   <div class="col-sm-8">
+                   <button type="submit" class="btn btn-default" value="submit">submit</button>
+                 </div>
+                 </div>
+
+               </form>
+  			</div>
+  		</div>
+  	</div>
+  </div>
+
   <script src="<?php echo base_url() ?>assets/js/jquery.min.js"></script>
   <script src="<?php echo base_url() ?>assets/bootstrap/bootstrap.min.js"></script>
   <script src="<?php echo base_url() ?>assets/bootstrap/js/jquery.js"></script>
@@ -231,7 +309,7 @@ var run_number=$("#run_number").val();
   assetcode[6] = kategori;
   assetcode[7] = kategori2;
   assetcode[8] = run_number;
-  
+
    $( "#id_barang" ).val(assetcode.join(''));
 
    var number = [];
@@ -239,7 +317,7 @@ var run_number=$("#run_number").val();
   number[1] = kategori2;
 
   $( "#number" ).val(number.join(''));
-   
+
 });
 
 
@@ -259,7 +337,7 @@ if(kategori != '')
   success:function(data)
     {
       $('#kategori2').html(data);
-     
+
     }
   });
 }
