@@ -23,6 +23,7 @@ class liststock extends CI_Controller {
 					$this->load->helper('url');
 					$this->load->library('pagination');
 					$this->load->model('AdminBarang');
+					$this->load->model('AdminStock');
           $this->load->model('AdminUser');
 	        if(!$this->session->userdata('username')){
 	            redirect('../');
@@ -71,7 +72,7 @@ $this->pagination->initialize($config);
 					$data['data'] = $this->AdminStock->getStock($config["per_page"], $data['page']);
 				}
 
-  	
+
   	$data['pagination'] = $this->pagination->create_links();
 	$data['users'] = $this->AdminUser->modalgetid();
   	$data['judul'] = "Users";
@@ -95,66 +96,40 @@ public function editstock()
 
 $this->load->library('session');
 $this->load->library('form_validation');
-$idbarang = $this->input->post('id_barang');
-$old_idbarang = $this->input->post('old_idbarang');
-$namabarang = $this->input->post('nama_barang');
-$idstatus = $this->input->post('status');
-$status = $this->input->post('status_hidden');
-$idasset = $this->input->post('asset');
-$asset = $this->input->post('asset_hidden');
-$idcabang = $this->input->post('cabang');
-$cabang = $this->input->post('cabang_hidden');
-$iddivisi = $this->input->post('divisi');
-$divisi = $this->input->post('divisi_hidden');
-$tgl_beli = $this->input->post('tgl_beli');
-$kategori = $this->input->post('kategori_hidden');
-$idkategori = $this->input->post('kategori');
-$kategori2 = $this->input->post('kategori2_hidden');
-$idkategori2 = $this->input->post('kategori2');
-$number = $this ->input->post('number');
-$runnumber = $this->input->post('run_number');
+$idstock = $this->input->post('id_stock');
+$oldidstock = $this->input->post('old_idstock');
+$namastock = $this->input->post('nama_stock');
+$itemcode = $this->input->post('item_code');
+$keterangan = $this->input->post('keterangan');
 
 $data = array(
-	'id_barang' => $idbarang,
-		'nama_barang' => $namabarang,
-		'status' => $status,
-		'id_status' => $idstatus,
-		'asset' => $asset,
-		'id_d2' => $idasset,
-		'cabang' => $cabang,
-		'id_cabang' => $idcabang,
-		'divisi' => $divisi,
-		'id_divisi' => $iddivisi,
-		'tgl_pembelian' => $tgl_beli,
-		'kategori' => $kategori,
-		'id_kategori' => $idkategori,
-		'no' => $number,
-		'kategori2' => $kategori2,
-		'id_kategori2' => $idkategori2,
-		'running_number' => $runnumber
+	'id_stock' => $idstock,
+	'item_code' => $itemcode,
+		'nama_stock' => $namastock,
+		'keterangan' => $keterangan
 	);
 
 
-						 $this->AdminStock->updateitem($data,$old_idbarang);
+						 $this->AdminStock->updatestock($data,$oldidstock);
 
-						redirect('../admin/listInventory');
+						redirect('../admin/listStock');
 }
 
 
 
-public function delete($id)
+public function deletestock($id)
 {
 	$this->load->library('session');
 
-	$where = array('id_barang' => $id);
-	$this->AdminBarang->delete($where,'barang');
-	redirect('../admin/listInventory');
+	$where = array('id_stock' => $id);
+	$this->AdminStock->deletestock($where,'stock');
+	redirect('../admin/listStock');
 }
 
-public function fetch_barang()
+public function fetch_stock()
 	{
-		$id_barang = $this->input->post('id_barang');
-		$result = $this->AdminBarang->fetch_barang($id_barang);
+		$id_stock = $this->input->post('id_stock');
+		$result = $this->AdminStock->fetch_stock($id_stock);
 
 		echo json_encode($result);
 		//$data['kategori2'] = $this->AdminBarang->fetch_kat2('id_kategori');
