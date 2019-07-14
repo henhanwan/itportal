@@ -121,9 +121,9 @@ public function deletestock($id)
 {
 	$this->load->library('session');
 
-	$where = array('id_barang' => $id);
-	$this->AdminBarang->delete($where,'barang');
-	redirect('../sadmin/listInventory');
+	$where = array('id_stock' => $id);
+	$this->AdminStock->deletestock($where,'stock');
+	redirect('../sadmin/listStock');
 }
 
 public function fetch_stock()
