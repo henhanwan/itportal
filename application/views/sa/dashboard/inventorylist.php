@@ -9,11 +9,10 @@
   <nav class="navbar navbar-default topNavbar">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="<?php echo base_url('dashadmin') ?>">ITPORTAL</a>
+        <a class="navbar-brand" href="<?php echo base_url('dashSa') ?>">ITPORTAL</a>
       </div>
       <ul class="nav navbar-nav">
-        <li class="active"><a href="<?php echo base_url('dashadmin') ?>">Home</a></li>
-        <li><a href="#">Profile</a></li>
+        <li class="active"><a href="<?php echo base_url('dashSa') ?>">Home</a></li>
         <li><a href="#">Reset Password</a></li>
         <li><a href="../Auth/logout">Logout</a></li>
       </ul>
@@ -26,10 +25,8 @@
   <div class="container-fluid text-center bg-3 menu">
   <div class="row">
 
-    <div class="col-sm-9 text-left">
-<!-- SESSION VALIDATION  -->
+    <div class="col-sm-10 text-left">
       <h1>Welcome <?php echo $this->session->userdata('username'); ?></h1>
-<!-- SESSION VALIDATION  -->
 
       <?php if ($this->session->flashdata('errors')) : ?>
         <div class="alert alert-danger">
@@ -41,36 +38,98 @@
           <?php echo $this->session->flashdata('success'); ?>
         </div>
       <?php endif; ?>
-<!-- INVENTORY MENU -->
-<?php if(!$this->session->userdata('user')){ ?>
-    <div class="col-sm-3 menu-button">
-      <h3><a href="#addbarang" data-toggle="modal">Add Asset</a></h3>
+
+    <div class="col-sm-11 listuser">
+
+      <h3 class="col-sm-4">Inventory</h3>
+      <div class="col-sm-11">
+
+
+
+    <a href="../inventory" data-toogle="modal" data-target="#addbarang" role="button" class="btn btn-info alignright">Add Item</a>
+
+
+
+      <form class="form-inline" action="<?php echo base_url();?>sadmin/listinventory" method="post">
+        <select class="form-control" name="field">
+            <option selected="selected" disabled="disabled" value="">Filter By</option>
+            <option value="id_barang">Asset Code</option>
+            <option value="nama_barang">Nama Barang</option>
+            <option value="barang.status_asset">Status</option>
+            <option value="barang.asset">Asset</option>
+            <option value="barang.cabang">Cabang</option>
+            <option value="barang.divisi">Divisi</option>
+            <option value="barang.kategori">Kategori</option>
+            <option value="barang.kategori2">Jenis</option>
+        </select>
+        <input class="form-control" type="text" name="search" value="" placeholder="Search...">
+        <input class="btn btn-default" type="submit" name="filter" value="Go">
+    </form>
     </div>
-    <?php } ?>
-    <div class="col-sm-3 menu-button">
-      <h3><a href="listinventory">List Asset</a></h3>
+
+
+      <table class="table table-inventory">
+
+        <thead>
+
+          <tr>
+            <th scope="col">Asset Code</th>
+            <th scope="col">Nama Barang</th>
+            <th scope="col">Status</th>
+            <th scope="col">Asset</th>
+            <th scope="col">Cabang</th>
+            <th scope="col">Divisi</th>
+            <th scope="col">Tanggal Pembelian</th>
+            <th scope="col">Kategori</th>
+            <th scope="col">Jenis</th>
+            <th scope="col">Action</th>
+          </tr>
+
+        </thead>
+    <?php
+
+         foreach ($data->result()as $row):
+
+        ?>
+        <tbody>
+
+          <tr>
+
+
+
+
+            <th scope="row"><?php echo $row->id_barang?></th>
+            <td scope="row"><?php echo $row->nama_barang?></td>
+            <td scope="row"><?php echo $row->status?></td>
+            <td scope="row"><?php echo $row->asset?></td>
+            <td scope="row"><?php echo $row->cabang?></td>
+            <td scope="row"><?php echo $row->divisi?></td>
+            <td scope="row"><?php echo $row->tgl_pembelian?></td>
+            <td scope="row"><?php echo $row->kategori?></td>
+            <td scope="row"><?php echo $row->kategori2?></td>
+            <td scope="row">
+              <a href="<?php echo base_url(); ?>sadmin/listinventory/delete/<?php echo $row->id_barang?>" role="button" class="btn btn-danger">Delete</a>
+              <button class="btn btn-info edit_data" data-toogle="modal" data-target="#update" id="<?php echo $row->id_barang?>" >Update</button>
+
+              <th>
+          </tr>
+        </tbody>
+
+<?php endforeach; ?>
+
+      </table>
+      <?php echo $pagination; ?>
     </div>
-    <div class="col-sm-12">
+
+
+
+
+
+
+
 
     </div>
-
-
-
-    <div class="col-sm-3 menu-button">
-      <h3><a href="#addstock" data-toggle="modal">Add Stock IN/OUT</a></h3>
-    </div>
-    <div class="col-sm-3 menu-button">
-      <h3><a href="liststock">List Stock</a></h3>
-    </div>
-    <div class="col-sm-3 menu-button">
-      <h3><a href="liststocktrans">List Stock IN/OUT</a></h3>
-    </div>
-
-  </div>
-
-
-<!-- SIDENAV -->
-    <div class="container-fluid col-sm-3 sidenav ">
+    <div class="container-fluid col-sm-2 sidenav ">
       <div class="well">
         <p>ADS</p>
       </div>
@@ -83,28 +142,33 @@
   </div>
 </div>
 
-<!-- MODAL FOR ADDING ITEM ASSET -->
-  <div id="addbarang" class="modal fade">
-  	<div class="modal-dialog modal-adduser">
-  		<div class="modal-content">
-  			<div class="modal-header">
-  				<h4 class="modal-title">Add Item</h4>
-  				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-  			</div>
-  			<div class="modal-body">
-                <form class="form-horizontal" role="form" method="post" action="<?php echo base_url('admin/Inventory/addbarang'); ?>">
+<div id="update" tabindex="-1" class="modal fade">
+
+  <div class="modal-dialog modal-adduser">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Edit Item</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+
+
+                <!--<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> -->
+              <!--<i class="fa fa-info-circle"></i>  <strong>Like SB Admin?</strong> Try out <a href="http://startbootstrap.com/template-overviews/sb-admin-2" class="alert-link">SB Admin 2</a> for additional features! -->
+              <form class="form-horizontal" role="form" method="post" action="<?php echo base_url('sadmin/listInventory/editItem'); ?>">
 
                 <div class="form-group">
                   <label class="control-label col-sm-4">Kode Asset:</label>
                   <div class="col-sm-8">
                   <input class="form-control" readonly="readonly" placeholder="kode asset" name="id_barang" id="id_barang"></input>
+                  <input type="hidden" name="old_idbarang" id="old_idbarang">
                 </div>
                 </div>
 
                  <div class="form-group">
                    <label class="control-label col-sm-4">Nama Asset :</label>
                    <div class="col-sm-8">
-                   <input class="form-control" placeholder="Nama Asset" name="nama_barang"></input>
+                   <input class="form-control" placeholder="Nama Asset" name="nama_barang" id="nama_barang"></input>
                  </div>
                  </div>
 
@@ -151,7 +215,7 @@
                    <label class="control-label col-sm-4">Kategori:</label>
                    <div class="col-sm-8">
                    <?php echo form_dropdown('kategori', $kategori, '','id="kategori" name="kategori" class="form-control"');?>
-                  <input type="hidden" name="kategori_hidden" id="kategori_hidden">
+                   <input type="hidden" name="kategori_hidden" id="kategori_hidden">
                  </div>
                  </div>
 
@@ -180,104 +244,60 @@
                  </div>
                  </div>
 
-               </form>
-  			</div>
-  		</div>
-  	</div>
+             </form>
+
+      </div>
+    </div>
   </div>
-
-  <!-- MODAL FOR ADDING ITEM STOCK -->
-  <div id="addstock" class="modal fade">
-  	<div class="modal-dialog modal-adduser">
-  		<div class="modal-content">
-  			<div class="modal-header">
-  				<h4 class="modal-title">Add Stock</h4>
-  				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-  			</div>
-  			<div class="modal-body">
-                <form class="form-horizontal" role="form" method="post" action="<?php echo base_url('admin/Inventory/addstock'); ?>">
+</div>
 
 
-                 <div class="form-group">
-                   <label class="control-label col-sm-4">Nama Stock :</label>
-                   <div class="col-sm-8">
-                   <input class="form-control" placeholder="Nama Stock" name="nama_stock"></input>
-                 </div>
-                 </div>
 
-                 <div class="form-group">
-                   <label class="control-label col-sm-4">Item Code :</label>
-                   <div class="col-sm-8">
-                   <input class="form-control" placeholder="Item Code" name="item_code"></input>
-                 </div>
-                 </div>
-
-                 <div class="form-group">
-                   <label class="control-label col-sm-4">IN / OUT  :</label>
-                   <div class="col-sm-8">
-                   <label class="radio-inline"><input type="radio" name="optinout" value="in">in</label>
-                   <label class="radio-inline"><input type="radio" name="optinout" value="out">out</label>
-                 </div>
-                 </div>
-
-                 <div class="form-group">
-                   <label class="control-label col-sm-4">Quantity :</label>
-                   <div class="col-sm-8">
-                   <input class="form-control" placeholder="Quantity" name="quantity"></input>
-                 </div>
-                 </div>
-
-                 <div class="form-group">
-                   <label class="control-label col-sm-4">Tanggal:</label>
-                   <div class="col-sm-8">
-                   <input type="date" name="tgl_inout" id="tgl_inout" class="form-control"></input>
-                 </div>
-                 </div>
-
-                 <div class="form-group">
-                   <label class="control-label col-sm-4">Vendor :</label>
-                   <div class="col-sm-8">
-                   <input class="form-control" placeholder="Nama Vendor" name="vendor"></input>
-                 </div>
-                 </div>
-
-                 <div class="form-group">
-                   <label class="control-label col-sm-4">NO PO :</label>
-                   <div class="col-sm-8">
-                   <input class="form-control" placeholder="NO PO" name="no_po"></input>
-                 </div>
-                 </div>
-
-                 <div class="form-group">
-                   <label class="control-label col-sm-4">Nama Employee :</label>
-                   <div class="col-sm-8">
-                   <input class="form-control" placeholder="Nama Employee" name="nama_emp"></input>
-                 </div>
-                 </div>
-
-                 <div class="form-group">
-                   <div class="col-sm-4"></div>
-                   <div class="col-sm-8">
-                   <button type="submit" class="btn btn-default" value="submit">submit</button>
-                 </div>
-                 </div>
-
-               </form>
-  			</div>
-  		</div>
-  	</div>
-  </div>
-
-  <script src="<?php echo base_url() ?>assets/js/jquery.min.js"></script>
+<script src="<?php echo base_url() ?>assets/bootstrap/js/jquery.js"></script>
+  <script src="<?php echo base_url() ?>assets/js/jquery-1.11.1.min.js"></script>
   <script src="<?php echo base_url() ?>assets/bootstrap/bootstrap.min.js"></script>
-  <script src="<?php echo base_url() ?>assets/bootstrap/js/jquery.js"></script>
+
   <script>
 
+  //EDIT DATA
+$(document).on('click', '.edit_data', function(){
+var id_barang =$(this).attr("id");
+var username=$("#username").val();
+  $.ajax({
+    url:"<?php echo base_url(); ?>sadmin/listinventory/fetch_barang",
+    // dataType:'text',
+    method:"POST",
+    dataType:"json",
+    data:{id_barang:id_barang},
+    success:function(data){
+      $("#id_barang").val(data[0].id_barang);
+      $("#old_idbarang").val(data[0].id_barang);
+      $("#nama_barang").val(data[0].nama_barang);
+      $("#status").val(data[0].id_status);
+      $("#asset").val(data[0].id_asset);
+      $("#d2").val(data[0].id_d2);
+      $("#cabang").val(data[0].id_cabang);
+      $("#divisi").val(data[0].id_divisi);
+      $("#tgl_beli").val(data[0].tgl_pembelian);
+      $("#kategori").val(data[0].id_kategori).change();
+      setTimeout(function(){
+        $("#kategori2").val(data[0].id_kategori2);
+      }, 100);
+      $("#kategori2").val(data[0].id_kategori2);
+      $("#run_number").val(data[0].running_number);
+      $("#update").modal('show');
 
 
 
+    }
+  })
+
+}
+
+)
 
 $("select,#tgl_beli,#run_number").change(function(){
+
 //GET VALUE FROM SELECTED TEXT AND PARSE IT INTO HIDDEN INPUT
 var status_text = $("#status option:selected").text();
 $("#status_hidden").val(status_text);
@@ -307,6 +327,7 @@ var kategori2= $("#kategori2").val();
 var run_number=$("#run_number").val();
 
 
+
 //GENERATE ASSETCODE
   var assetcode = [];
   assetcode[0] = status;
@@ -329,9 +350,6 @@ var run_number=$("#run_number").val();
 
 });
 
-
-
-
 //KATEGORI DEPENDENT DROPDOWN
 $("#kategori").change(function(){
   var kategori= $("#kategori").children("option:selected").val();
@@ -346,7 +364,6 @@ if(kategori != '')
   success:function(data)
     {
       $('#kategori2').html(data);
-
     }
   });
 }
@@ -355,6 +372,6 @@ else
   $('#kategori2').html('<option value="">Select kategori 2</option>');
 }
 });
-
 </script>
 </body>
+</html>

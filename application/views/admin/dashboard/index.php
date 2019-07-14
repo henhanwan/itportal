@@ -29,31 +29,10 @@
 
     <div class="col-sm-9 text-left">
       <h1>Welcome <?php echo $this->session->userdata('username'); ?></h1>
-    <div class="col-sm-3 menu-button">
-      <h3><a href="#">Helpdesk</a></h3>
-    </div>
+
     <div class="col-sm-3 menu-button">
       <h3><a href="<?php echo base_url('admin/inventory')?>">Inventory</a></h3>
     </div>
-    <div class="col-sm-3 menu-button">
-      <h3>Knowledge Based</h3>
-    </div>
-    <div class="col-sm-3 menu-button">
-      <h3><a href="<?php echo base_url('admin/employee')?>">Employee</a></h3>
-    </div>
-    <div class="col-sm-3 menu-button">
-      <h3>Monitoring</h3>
-    </div>
-    <div class="col-sm-3 menu-button">
-      <h3><a href="<?php echo base_url('admin/user')?>">Users</a></h3>
-    </div>
-    <div class="col-sm-3 menu-button">
-      <h3>Log</h3>
-    </div>
-    <div class="col-sm-3 menu-button">
-      <h3>FAQ</h3>
-    </div>
-
 
     </div>
     <div class="container-fluid col-sm-3 sidenav ">

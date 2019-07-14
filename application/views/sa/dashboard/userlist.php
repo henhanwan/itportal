@@ -9,10 +9,10 @@
   <nav class="navbar navbar-default topNavbar">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="<?php echo base_url('dashadmin') ?>">ITPORTAL</a>
+        <a class="navbar-brand" href="<?php echo base_url('dashsa') ?>">ITPORTAL</a>
       </div>
       <ul class="nav navbar-nav">
-        <li class="active"><a href="<?php echo base_url('dashadmin') ?>">Home</a></li>
+        <li class="active"><a href="<?php echo base_url('dashsa') ?>">Home</a></li>
         <li><a href="#">Profile</a></li>
         <li><a href="#">Reset Password</a></li>
         <li><a href="../Auth/logout">Logout</a></li>
@@ -66,7 +66,7 @@
             <td scope="row"><?php echo $row->level?></td>
             <td scope="row"><?php echo $row->active?></td>
             <td scope="row">
-              <a href="<?php echo base_url(); ?>Admin/listUser/delete/<?php echo $row->id?>" role="button" class="btn btn-danger">Delete</a>
+              <a href="<?php echo base_url(); ?>sadmin/listUser/delete/<?php echo $row->id?>" role="button" class="btn btn-danger">Delete</a>
               <button class="btn btn-info edit_data" data-toogle="modal" data-target="#update" id="<?php echo $row->id?>" >Update</button>
               <th>
           </tr>
@@ -112,7 +112,7 @@
 
                 <!--<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> -->
               <!--<i class="fa fa-info-circle"></i>  <strong>Like SB Admin?</strong> Try out <a href="http://startbootstrap.com/template-overviews/sb-admin-2" class="alert-link">SB Admin 2</a> for additional features! -->
-              <form class="form-horizontal" role="form" method="post" action="<?php echo base_url('admin/listUser/edituser'); ?>">
+              <form class="form-horizontal" role="form" method="post" action="<?php echo base_url('sadmin/listUser/edituser'); ?>">
 
               <div class="form-group">
                 <label class="control-label col-sm-4">ID Karyawan :</label>
@@ -138,7 +138,8 @@
                <div class="form-group">
                  <label class="control-label col-sm-4">User type  :</label>
                  <div class="col-sm-8">
-                   <div id="radiolevel"><label class="radio-inline"><input type="radio" name="optlevel" value="superadmin" id="adminopt">SuperAdmin</label>
+                   <div id="radiolevel">
+                     <label class="radio-inline"><input type="radio" name="optlevel" value="superadmin" id="adminopt">SuperAdmin</label>
                  <label class="radio-inline"><input type="radio" name="optlevel" value="admin" id="adminopt">Admin</label>
                  <label class="radio-inline"><input type="radio" name="optlevel" value="user" id="adminopt">User</label>
                </div>
@@ -180,7 +181,7 @@ $(document).on('click', '.edit_data', function(){
 var id =$(this).attr("id");
 var username=$("#username").val();
   $.ajax({
-    url:"<?php echo base_url(); ?>admin/listUser/fetch_user",
+    url:"<?php echo base_url(); ?>sadmin/listUser/fetch_user",
     // dataType:'text',
     method:"POST",
     dataType:"json",

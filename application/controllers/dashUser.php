@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class dashAdmin extends CI_Controller {
+class dashUser extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -23,8 +23,8 @@ class dashAdmin extends CI_Controller {
 	        if(!$this->session->userdata('username')){
 	            redirect('../');
 	        }
-					elseif ($this->session->userdata('level') == "user") {
-			      redirect('dashUser');
+					elseif ($this->session->userdata('level') == "admin") {
+			      redirect('dashAdmin');
 			    }
 					
 	    }
@@ -32,7 +32,7 @@ class dashAdmin extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('admin/dashboard/index.php');
+		$this->load->view('user/dashboard/index.php');
 	}
 
 }

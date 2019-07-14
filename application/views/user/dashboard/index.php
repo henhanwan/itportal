@@ -10,22 +10,16 @@
   <nav class="navbar navbar-default topNavbar">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="<?php echo base_url() ?>">ITPORTAL</a>
+        <a class="navbar-brand" href="<?php echo base_url('dashuser') ?>">ITPORTAL</a>
       </div>
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-      
+        <li class="active"><a href="<?php echo base_url('dashuser') ?>">Home</a></li>
+        <li><a href="#">Profile</a></li>
+        <li><a href="#">Reset Password</a></li>
+        <li><a href="<?php echo base_url('auth/logout')?>">Logout</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="<?php
-
-        if(!$this->session->userdata('username'))
-
-      {echo "#login";} if($this->session->userdata('username')) {echo "#";}  ?>" data-toggle="modal"><span class="glyphicon glyphicon-log-in"></span><?php
-
-        if(!$this->session->userdata('username'))
-
-      {echo "Login";} if($this->session->userdata('username')) {echo $this->session->userdata('username');}  ?></a></li>
+        <li><a href="#login" data-toggle="modal"><span class="username glyphicon glyphicon-user"></span><?php echo $this->session->userdata('username'); ?></a></li>
       </ul>
     </div>
   </nav>
@@ -34,28 +28,14 @@
   <div class="row">
 
     <div class="col-sm-9 text-left">
-      <h1>Welcome</h1>
-    <!-- <div class="col-sm-3 menu-button">
-      <h3>test</h3>
-    </div>
+      <h1>Welcome <?php echo $this->session->userdata('username'); ?></h1>
+
     <div class="col-sm-3 menu-button">
-      <h3>test</h3>
+      <h3><a href="<?php echo base_url('user/inventory')?>">Inventory</a></h3>
     </div>
-    <div class="col-sm-3 menu-button">
-      <h3>test</h3>
-    </div>
-    <div class="col-sm-3 menu-button">
-      <h3>test</h3>
-    </div>
-    <div class="col-sm-3 menu-button">
-      <h3>test</h3>
-    </div>
-    <div class="col-sm-3 menu-button">
-      <h3>test</h3>
-    </div>
-    <div class="col-sm-3 menu-button">
-      <h3>test</h3>
-    </div> -->
+
+
+
 
 
     </div>
@@ -107,12 +87,3 @@
 		</div>
 	</div>
 </div>
-
-
-
-<script src="<?php echo base_url() ?>assets/js/jquery-1.11.1.min.js"></script>
-<script src="<?php echo base_url() ?>assets/bootstrap/bootstrap.min.js"></script>
-<script src="<?php echo base_url() ?>assets/bootstrap/js/jquery.js"></script>
-</body>
-
-</html>

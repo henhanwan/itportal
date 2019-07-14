@@ -9,10 +9,10 @@
   <nav class="navbar navbar-default topNavbar">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="<?php echo base_url('dashadmin') ?>">ITPORTAL</a>
+        <a class="navbar-brand" href="<?php echo base_url('dashsa') ?>">ITPORTAL</a>
       </div>
       <ul class="nav navbar-nav">
-        <li class="active"><a href="<?php echo base_url('dashadmin') ?>">Home</a></li>
+        <li class="active"><a href="<?php echo base_url('dashSa') ?>">Home</a></li>
         <li><a href="#">Profile</a></li>
         <li><a href="#">Reset Password</a></li>
         <li><a href="../Auth/logout">Logout</a></li>
@@ -195,7 +195,7 @@
   				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
   			</div>
   			<div class="modal-body">
-                <form class="form-horizontal" role="form" method="post" action="<?php echo base_url('admin/Inventory/addstock'); ?>">
+                <form class="form-horizontal" role="form" method="post" action="<?php echo base_url('sadmin/Inventory/addstock'); ?>">
 
 
                  <div class="form-group">

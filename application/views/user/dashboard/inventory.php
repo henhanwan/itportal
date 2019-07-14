@@ -9,10 +9,10 @@
   <nav class="navbar navbar-default topNavbar">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="<?php echo base_url('dashadmin') ?>">ITPORTAL</a>
+        <a class="navbar-brand" href="<?php echo base_url('dashuser') ?>">ITPORTAL</a>
       </div>
       <ul class="nav navbar-nav">
-        <li class="active"><a href="<?php echo base_url('dashadmin') ?>">Home</a></li>
+        <li class="active"><a href="<?php echo base_url('dashUser') ?>">Home</a></li>
         <li><a href="#">Profile</a></li>
         <li><a href="#">Reset Password</a></li>
         <li><a href="../Auth/logout">Logout</a></li>
@@ -42,11 +42,7 @@
         </div>
       <?php endif; ?>
 <!-- INVENTORY MENU -->
-<?php if(!$this->session->userdata('user')){ ?>
-    <div class="col-sm-3 menu-button">
-      <h3><a href="#addbarang" data-toggle="modal">Add Asset</a></h3>
-    </div>
-    <?php } ?>
+
     <div class="col-sm-3 menu-button">
       <h3><a href="listinventory">List Asset</a></h3>
     </div>
@@ -56,9 +52,7 @@
 
 
 
-    <div class="col-sm-3 menu-button">
-      <h3><a href="#addstock" data-toggle="modal">Add Stock IN/OUT</a></h3>
-    </div>
+
     <div class="col-sm-3 menu-button">
       <h3><a href="liststock">List Stock</a></h3>
     </div>
@@ -84,7 +78,7 @@
 </div>
 
 <!-- MODAL FOR ADDING ITEM ASSET -->
-  <div id="addbarang" class="modal fade">
+  <!-- <div id="addbarang" class="modal fade">
   	<div class="modal-dialog modal-adduser">
   		<div class="modal-content">
   			<div class="modal-header">
@@ -92,7 +86,7 @@
   				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
   			</div>
   			<div class="modal-body">
-                <form class="form-horizontal" role="form" method="post" action="<?php echo base_url('admin/Inventory/addbarang'); ?>">
+                <form class="form-horizontal" role="form" method="post" action="">
 
                 <div class="form-group">
                   <label class="control-label col-sm-4">Kode Asset:</label>
@@ -111,7 +105,7 @@
                  <div class="form-group">
                    <label class="control-label col-sm-4">Status Asset :</label>
                    <div class="col-sm-8">
-                   <?php echo form_dropdown('status', $status_asset, '','id="status" name="status" class="form-control"');?>
+
                    <input type="hidden" name="status_hidden" id="status_hidden">
                  </div>
                  </div>
@@ -119,7 +113,7 @@
                  <div class="form-group">
                    <label class="control-label col-sm-4">Asset:</label>
                    <div class="col-sm-8">
-                   <?php echo form_dropdown('asset', $d2, '','id="d2" name="asset" class="form-control"');?>
+
                    <input type="hidden" name="asset_hidden" id="asset_hidden">
                  </div>
                  </div>
@@ -127,7 +121,7 @@
                  <div class="form-group">
                    <label class="control-label col-sm-4">Cabang:</label>
                    <div class="col-sm-8">
-                   <?php echo form_dropdown('cabang', $cabang, '','id="cabang" name="cabang" class="form-control"');?>
+
                    <input type="hidden" name="cabang_hidden" id="cabang_hidden">
                  </div>
                  </div>
@@ -135,7 +129,7 @@
                  <div class="form-group">
                    <label class="control-label col-sm-4">Divisi:</label>
                    <div class="col-sm-8">
-                   <?php echo form_dropdown('divisi', $divisi, '','id="divisi" name="divisi" class="form-control"');?>
+
                    <input type="hidden" name="divisi_hidden" id="divisi_hidden">
                  </div>
                  </div>
@@ -150,7 +144,7 @@
                  <div class="form-group">
                    <label class="control-label col-sm-4">Kategori:</label>
                    <div class="col-sm-8">
-                   <?php echo form_dropdown('kategori', $kategori, '','id="kategori" name="kategori" class="form-control"');?>
+
                   <input type="hidden" name="kategori_hidden" id="kategori_hidden">
                  </div>
                  </div>
@@ -159,9 +153,9 @@
                    <label class="control-label col-sm-4">Kategori 2:</label>
                    <div class="col-sm-8">
                      <!-- <select name="kategori2" id="kategori2" class="form-control"> -->
-                     <?php echo form_dropdown('kategori2', $kategori2, '','id="kategori2" name="kategori2" class="form-control"');?>
+
                      <!-- </select> -->
-                     <input type="hidden" name="kategori2_hidden" id="kategori2_hidden">
+                     <!-- <input type="hidden" name="kategori2_hidden" id="kategori2_hidden">
                      <input type="hidden" name="number" id="number">
                  </div>
                  </div>
@@ -184,7 +178,7 @@
   			</div>
   		</div>
   	</div>
-  </div>
+  </div> -->
 
   <!-- MODAL FOR ADDING ITEM STOCK -->
   <div id="addstock" class="modal fade">

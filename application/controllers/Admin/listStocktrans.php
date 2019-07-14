@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class liststock extends CI_Controller {
+class liststocktrans extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -32,8 +32,8 @@ class liststock extends CI_Controller {
 public function index()
 {
   $this->load->model('AdminStock');
-  $config['base_url'] = base_url('admin/liststock/index');
-  $config['total_rows'] = $this->db->count_all('stock');
+  $config['base_url'] = base_url('admin/liststocktrans/index');
+  $config['total_rows'] = $this->db->count_all('stock_trans');
  $config['per_page'] = 5;
  $config['uri_segment']=4;
  $choice = $config["total_rows"] / $config["per_page"];
@@ -66,12 +66,12 @@ $this->pagination->initialize($config);
 				$search = $this->input->post('search');
 
 				if (isset($filter) && !empty($search)) {
-						$data['data'] = $this->AdminStock->getStock($config["per_page"], $data['page'], $field, $search);
+						$data['data'] = $this->AdminStock->getStocktrans($config["per_page"], $data['page'], $field, $search);
 				}else{
-					$data['data'] = $this->AdminStock->getStock($config["per_page"], $data['page']);
+					$data['data'] = $this->AdminStock->getStocktrans($config["per_page"], $data['page']);
 				}
 
-  	
+  
   	$data['pagination'] = $this->pagination->create_links();
 	$data['users'] = $this->AdminUser->modalgetid();
   	$data['judul'] = "Users";
@@ -86,7 +86,7 @@ $this->pagination->initialize($config);
 
 
 
-$this->load->view('admin/dashboard/stocklist.php',$data);
+$this->load->view('admin/dashboard/stocklisttrans.php',$data);
 }
 
 
@@ -135,7 +135,7 @@ $data = array(
 	);
 
 
-						 $this->AdminStock->updateitem($data,$old_idbarang);
+						 $this->AdminBarang->updateitem($data,$old_idbarang);
 
 						redirect('../admin/listInventory');
 }

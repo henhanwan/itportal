@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class liststock extends CI_Controller {
+class listinventory extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -27,13 +27,16 @@ class liststock extends CI_Controller {
 	        if(!$this->session->userdata('username')){
 	            redirect('../');
 	        }
+					elseif ($this->session->userdata('level') == "admin") {
+			      redirect('dashAdmin');
+			    }
 	    }
 
 public function index()
 {
-  $this->load->model('AdminStock');
-  $config['base_url'] = base_url('admin/liststock/index');
-  $config['total_rows'] = $this->db->count_all('stock');
+  $this->load->model('AdminBarang');
+  $config['base_url'] = base_url('admin/listinventory/index');
+  $config['total_rows'] = $this->db->count_all('barang');
  $config['per_page'] = 5;
  $config['uri_segment']=4;
  $choice = $config["total_rows"] / $config["per_page"];
@@ -58,20 +61,27 @@ public function index()
         $config['last_tag_open']    = '<li class="page-item"><span class="page-link">';
         $config['last_tagl_close']  = '</span></li>';
 
-$this->pagination->initialize($config);
+	$this->pagination->initialize($config);
         $data['page'] = ($this->uri->segment(4)) ? $this->uri->segment(4) : 0;
 
-				$filter = $this->input->post('filter');
+	$filter = $this->input->post('filter');
         $field  = $this->input->post('field');
-				$search = $this->input->post('search');
-
-				if (isset($filter) && !empty($search)) {
-						$data['data'] = $this->AdminStock->getStock($config["per_page"], $data['page'], $field, $search);
-				}else{
-					$data['data'] = $this->AdminStock->getStock($config["per_page"], $data['page']);
-				}
-
-  	
+	$search = $this->input->post('search');
+	/*
+	if (isset($filter) && !empty($search)) {
+		$this->load->model('AdminBarang');
+		$data['students'] = $this->AdminBarang->getBarangWhereLike($field, $search);
+	} else {
+		$this->load->model('AdminBarang');
+		// $this->load->model('students/Student_Model');
+		$data['data'] = $this->AdminBarang->getBarang($config["per_page"], $data['page']);
+	}
+	*/
+	if (isset($filter) && !empty($search)) {
+  		$data['data'] = $this->AdminBarang->getBarang($config["per_page"], $data['page'], $field, $search);
+	}else{
+		$data['data'] = $this->AdminBarang->getBarang($config["per_page"], $data['page']);
+	}
   	$data['pagination'] = $this->pagination->create_links();
 	$data['users'] = $this->AdminUser->modalgetid();
   	$data['judul'] = "Users";
@@ -86,11 +96,11 @@ $this->pagination->initialize($config);
 
 
 
-$this->load->view('admin/dashboard/stocklist.php',$data);
+$this->load->view('user/dashboard/inventorylist.php',$data);
 }
 
 
-public function editstock()
+public function editItem()
 {
 
 $this->load->library('session');
@@ -135,18 +145,18 @@ $data = array(
 	);
 
 
-						 $this->AdminStock->updateitem($data,$old_idbarang);
+						 $this->AdminBarang->updateitem($data,$old_idbarang);
 
 						redirect('../admin/listInventory');
 }
 
 
 
-public function delete($id)
+public function delete($idbarang)
 {
 	$this->load->library('session');
 
-	$where = array('id_barang' => $id);
+	$where = array('id_barang' => $idbarang);
 	$this->AdminBarang->delete($where,'barang');
 	redirect('../admin/listInventory');
 }

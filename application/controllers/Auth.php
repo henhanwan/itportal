@@ -55,8 +55,9 @@ class Auth extends CI_Controller {
 		public function login()
 		{
 			//melakukan pengalihan halaman sesuai dengan levelnya
-			if ($this->session->userdata('level') == "user"){redirect('user/user/Home');}
+			if ($this->session->userdata('level') == "user"){redirect('dashUser/');}
 			if ($this->session->userdata('level') == "admin"){redirect('dashadmin/');}
+			if ($this->session->userdata('level') == "superadmin"){redirect('dashSa/');}
 
 			//proses login dan validasi nya
 			if ($this->input->post('submit')) {
@@ -71,8 +72,11 @@ class Auth extends CI_Controller {
 					if($data->level == 'admin'){
 						redirect('dashadmin/');
 					}
+					else if($data->level == 'superadmin'){
+						redirect('dashSa/');
+					}
 					else if($data->level == 'user'){
-						redirect('user/user');
+						redirect('dashUser/');
 					}
 				}
 

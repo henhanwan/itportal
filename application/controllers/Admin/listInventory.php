@@ -64,7 +64,7 @@ public function index()
 	$filter = $this->input->post('filter');
         $field  = $this->input->post('field');
 	$search = $this->input->post('search');
-	/*			
+	/*
 	if (isset($filter) && !empty($search)) {
 		$this->load->model('AdminBarang');
 		$data['students'] = $this->AdminBarang->getBarangWhereLike($field, $search);
@@ -83,7 +83,7 @@ public function index()
 	$data['users'] = $this->AdminUser->modalgetid();
   	$data['judul'] = "Users";
 	$data['status_asset'] = $this->AdminBarang->get_status();
-	
+
 	$data['d2'] = $this->AdminBarang->get_d2();
 	$data['cabang'] = $this->AdminBarang->get_cabang();
 	$data['divisi'] = $this->AdminBarang->get_divisi();
@@ -143,19 +143,19 @@ $data = array(
 
 
 						 $this->AdminBarang->updateitem($data,$old_idbarang);
-						 
+
 						redirect('../admin/listInventory');
 }
 
 
 
-public function delete($id)
+public function delete($idbarang)
 {
 	$this->load->library('session');
 
-	$where = array('id' => $id);
-	$this->AdminUser->delete($where,'users');
-	redirect('../admin/listUser');
+	$where = array('id_barang' => $idbarang);
+	$this->AdminUser->delete($where,'barang');
+	redirect('../admin/listInventory');
 }
 
 public function fetch_barang()

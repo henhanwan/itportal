@@ -27,6 +27,9 @@ class liststock extends CI_Controller {
 	        if(!$this->session->userdata('username')){
 	            redirect('../');
 	        }
+					elseif ($this->session->userdata('level') == "admin") {
+			      redirect('dashAdmin');
+			    }
 	    }
 
 public function index()
@@ -66,12 +69,17 @@ $this->pagination->initialize($config);
 				$search = $this->input->post('search');
 
 				if (isset($filter) && !empty($search)) {
+					// $this->load->model('AdminStock');
+					// $data['students'] = $this->AdminStock->getBarangWhereLike($field, $search);
 						$data['data'] = $this->AdminStock->getStock($config["per_page"], $data['page'], $field, $search);
-				}else{
+			} else {
+				// $this->load->model('AdminStock');
+					// $this->load->model('students/Student_Model');
+					// $data['data'] = $this->AdminStock->getStock($config["per_page"], $data['page']);
 					$data['data'] = $this->AdminStock->getStock($config["per_page"], $data['page']);
-				}
+			}
 
-  	
+  	$data['data'] = $this->AdminStock->getStock($config["per_page"], $data['page']);
   	$data['pagination'] = $this->pagination->create_links();
 	$data['users'] = $this->AdminUser->modalgetid();
   	$data['judul'] = "Users";
@@ -86,7 +94,7 @@ $this->pagination->initialize($config);
 
 
 
-$this->load->view('admin/dashboard/stocklist.php',$data);
+$this->load->view('user/dashboard/stocklist.php',$data);
 }
 
 
@@ -135,7 +143,7 @@ $data = array(
 	);
 
 
-						 $this->AdminStock->updateitem($data,$old_idbarang);
+						 $this->AdminBarang->updateitem($data,$old_idbarang);
 
 						redirect('../admin/listInventory');
 }

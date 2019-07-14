@@ -28,6 +28,9 @@ class Inventory extends CI_Controller {
 	        if(!$this->session->userdata('username')){
 	            redirect('../');
 	        }
+					elseif ($this->session->userdata('level') == "admin") {
+			      redirect('dashAdmin');
+			    }
 	    }
 
 
@@ -41,7 +44,7 @@ class Inventory extends CI_Controller {
 		$data['kategori2'] = $this->AdminBarang->fetch_kat2('id_kategori');
 
 
-		$this->load->view('admin/dashboard/inventory.php',$data);
+		$this->load->view('user/dashboard/inventory.php',$data);
 
 	}
 

@@ -9,10 +9,10 @@
   <nav class="navbar navbar-default topNavbar">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="<?php echo base_url('dashadmin') ?>">ITPORTAL</a>
+        <a class="navbar-brand" href="<?php echo base_url('dashsa') ?>">ITPORTAL</a>
       </div>
       <ul class="nav navbar-nav">
-        <li class="active"><a href="<?php echo base_url('dashadmin') ?>">Home</a></li>
+        <li class="active"><a href="<?php echo base_url('dashsa') ?>">Home</a></li>
         <li><a href="#">Profile</a></li>
         <li><a href="#">Reset Password</a></li>
         <li><a href="../Auth/logout">Logout</a></li>
@@ -47,21 +47,17 @@
 
 
 
-    <a href="../admin/inventory" data-toogle="modal" data-target="#addbarang" role="button" class="btn btn-info alignright">Add Item</a>
+    <a href="../sadmin/inventory" data-toogle="modal" data-target="#addbarang" role="button" class="btn btn-info alignright">Add Item</a>
 
 
 
-      <form class="form-inline" action="<?php echo base_url();?>admin/listinventory" method="post">
+      <form class="form-inline" action="<?php echo base_url();?>sadmin/listStock" method="post">
         <select class="form-control" name="field">
             <option selected="selected" disabled="disabled" value="">Filter By</option>
-            <option value="id_barang">Asset Code</option>
-            <option value="nama_barang">Nama Barang</option>
-            <option value="barang.status_asset">Status</option>
-            <option value="barang.asset">Asset</option>
-            <option value="barang.cabang">Cabang</option>
-            <option value="barang.divisi">Divisi</option>
-            <option value="barang.kategori">Kategori</option>
-            <option value="barang.kategori2">Jenis</option>
+            <option value="id_stock">Stock Number</option>
+            <option value="item_code">Item Code</option>
+            <option value="nama_stock">Nama Barang</option>
+            <option value="quantity">Quantity</option>
         </select>
         <input class="form-control" type="text" name="search" value="" placeholder="Search...">
         <input class="btn btn-default" type="submit" name="filter" value="Go">
@@ -74,16 +70,13 @@
         <thead>
 
           <tr>
-            <th scope="col">Asset Code</th>
+            <th scope="col">Stock Number</th>
+            <th scope="col">Item Code</th>
             <th scope="col">Nama Barang</th>
-            <th scope="col">Status</th>
-            <th scope="col">Asset</th>
-            <th scope="col">Cabang</th>
-            <th scope="col">Divisi</th>
-            <th scope="col">Tanggal Pembelian</th>
-            <th scope="col">Kategori</th>
-            <th scope="col">Jenis</th>
-            <th scope="col">Action</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Last In</th>
+            <th scope="col">Last Out</th>
+            <th scope="col">Keterangan</th>
           </tr>
 
         </thead>
@@ -99,19 +92,17 @@
 
 
 
-            <th scope="row"><?php echo $row->id_barang?></th>
-            <td scope="row"><?php echo $row->nama_barang?></td>
-            <td scope="row"><?php echo $row->status?></td>
-            <td scope="row"><?php echo $row->asset?></td>
-            <td scope="row"><?php echo $row->cabang?></td>
-            <td scope="row"><?php echo $row->divisi?></td>
-            <td scope="row"><?php echo $row->tgl_pembelian?></td>
-            <td scope="row"><?php echo $row->kategori?></td>
-            <td scope="row"><?php echo $row->kategori2?></td>
-            <td scope="row">
-              <a href="<?php echo base_url(); ?>Admin/listinventory/delete/<?php echo $row->id_barang?>" role="button" class="btn btn-danger">Delete</a>
-              <button class="btn btn-info edit_data" data-toogle="modal" data-target="#update" id="<?php echo $row->id_barang?>" >Update</button>
+            <th scope="row"><?php echo $row->id_stock?></th>
+            <th scope="row"><?php echo $row->item_code?></th>
+            <td scope="row"><?php echo $row->nama_stock?></td>
+            <td scope="row"><?php echo $row->quantity?></td>
+            <td scope="row"><?php echo $row->last_in?></td>
+            <td scope="row"><?php echo $row->last_out?></td>
+            <td scope="row"><?php echo $row->Keterangan?></td>
 
+            <td scope="row">
+              <a href="<?php echo base_url(); ?>sadmin/listinventory/delete/<?php echo $row->id_stock?>" role="button" class="btn btn-danger">Delete</a>
+<button class="btn btn-info edit_data" data-toogle="modal" data-target="#update" id="<?php echo $row->id_stock?>" >Update</button>
               <th>
           </tr>
         </tbody>
@@ -156,85 +147,35 @@
 
                 <!--<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> -->
               <!--<i class="fa fa-info-circle"></i>  <strong>Like SB Admin?</strong> Try out <a href="http://startbootstrap.com/template-overviews/sb-admin-2" class="alert-link">SB Admin 2</a> for additional features! -->
-              <form class="form-horizontal" role="form" method="post" action="<?php echo base_url('admin/listInventory/editItem'); ?>">
+              <form class="form-horizontal" role="form" method="post" action="<?php echo base_url('sadmin/listStock/editstock'); ?>">
 
                 <div class="form-group">
-                  <label class="control-label col-sm-4">Kode Asset:</label>
+                  <label class="control-label col-sm-4">Stock Number:</label>
                   <div class="col-sm-8">
-                  <input class="form-control" readonly="readonly" placeholder="kode asset" name="id_barang" id="id_barang"></input>
-                  <input type="hidden" name="old_idbarang" id="old_idbarang">
+                  <input class="form-control" placeholder="Stock Number" name="id_stock" id="id_stock"></input>
+                  <input type="hidden" name="old_idstock" id="old_idstock">
+                </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label col-sm-4">Item Code:</label>
+                  <div class="col-sm-8">
+                  <input class="form-control" placeholder="item_code" name="item_code" id="item_code"></input>
+                  <!-- <input type="hidden" name="old_idbarang" id="old_idbarang"> -->
                 </div>
                 </div>
 
                  <div class="form-group">
-                   <label class="control-label col-sm-4">Nama Asset :</label>
+                   <label class="control-label col-sm-4">Nama Stock:</label>
                    <div class="col-sm-8">
-                   <input class="form-control" placeholder="Nama Asset" name="nama_barang" id="nama_barang"></input>
+                   <input class="form-control" placeholder="Nama Stock" name="nama_stock" id="nama_stock"></input>
                  </div>
                  </div>
 
                  <div class="form-group">
-                   <label class="control-label col-sm-4">Status Asset :</label>
+                   <label class="control-label col-sm-4">Keterangan</label>
                    <div class="col-sm-8">
-                   <?php echo form_dropdown('status', $status_asset, '','id="status" name="status" class="form-control"');?>
-                   <input type="hidden" name="status_hidden" id="status_hidden">
-                 </div>
-                 </div>
-
-                 <div class="form-group">
-                   <label class="control-label col-sm-4">Asset:</label>
-                   <div class="col-sm-8">
-                   <?php echo form_dropdown('asset', $d2, '','id="d2" name="asset" class="form-control"');?>
-                   <input type="hidden" name="asset_hidden" id="asset_hidden">
-                 </div>
-                 </div>
-
-                 <div class="form-group">
-                   <label class="control-label col-sm-4">Cabang:</label>
-                   <div class="col-sm-8">
-                   <?php echo form_dropdown('cabang', $cabang, '','id="cabang" name="cabang" class="form-control"');?>
-                   <input type="hidden" name="cabang_hidden" id="cabang_hidden">
-                 </div>
-                 </div>
-
-                 <div class="form-group">
-                   <label class="control-label col-sm-4">Divisi:</label>
-                   <div class="col-sm-8">
-                   <?php echo form_dropdown('divisi', $divisi, '','id="divisi" name="divisi" class="form-control"');?>
-                   <input type="hidden" name="divisi_hidden" id="divisi_hidden">
-                 </div>
-                 </div>
-
-                 <div class="form-group">
-                   <label class="control-label col-sm-4">Tanggal pembelian:</label>
-                   <div class="col-sm-8">
-                   <input type="date" name="tgl_beli" id="tgl_beli" class="form-control"></input>
-                 </div>
-                 </div>
-
-                 <div class="form-group">
-                   <label class="control-label col-sm-4">Kategori:</label>
-                   <div class="col-sm-8">
-                   <?php echo form_dropdown('kategori', $kategori, '','id="kategori" name="kategori" class="form-control"');?>
-                   <input type="hidden" name="kategori_hidden" id="kategori_hidden">
-                 </div>
-                 </div>
-
-                 <div class="form-group">
-                   <label class="control-label col-sm-4">Kategori 2:</label>
-                   <div class="col-sm-8">
-                     <!-- <select name="kategori2" id="kategori2" class="form-control"> -->
-                     <?php echo form_dropdown('kategori2', $kategori2, '','id="kategori2" name="kategori2" class="form-control"');?>
-                     <!-- </select> -->
-                     <input type="hidden" name="kategori2_hidden" id="kategori2_hidden">
-                     <input type="hidden" name="number" id="number">
-                 </div>
-                 </div>
-
-                 <div class="form-group">
-                   <label class="control-label col-sm-4">Running Number</label>
-                   <div class="col-sm-8">
-                   <input class="form-control" placeholder="running number" name="run_number" id="run_number"></input>
+                   <input class="form-control" placeholder="keterangan" name="keterangan" id="keterangan"></input>
                  </div>
                  </div>
 
@@ -262,30 +203,21 @@
 
   //EDIT DATA
 $(document).on('click', '.edit_data', function(){
-var id_barang =$(this).attr("id");
+var id_stock =$(this).attr("id");
 var username=$("#username").val();
   $.ajax({
-    url:"<?php echo base_url(); ?>sadmin/listinventory/fetch_barang",
+    url:"<?php echo base_url(); ?>sadmin/listStock/fetch_stock",
     // dataType:'text',
     method:"POST",
     dataType:"json",
-    data:{id_barang:id_barang},
+    data:{id_stock:id_stock},
     success:function(data){
-      $("#id_barang").val(data[0].id_barang);
-      $("#old_idbarang").val(data[0].id_barang);
-      $("#nama_barang").val(data[0].nama_barang);
-      $("#status").val(data[0].id_status);
-      $("#asset").val(data[0].id_asset);
-      $("#d2").val(data[0].id_d2);
-      $("#cabang").val(data[0].id_cabang);
-      $("#divisi").val(data[0].id_divisi);
-      $("#tgl_beli").val(data[0].tgl_pembelian);
-      $("#kategori").val(data[0].id_kategori).change();
-      setTimeout(function(){
-        $("#kategori2").val(data[0].id_kategori2);
-      }, 100);
-      $("#kategori2").val(data[0].id_kategori2);
-      $("#run_number").val(data[0].running_number);
+      $("#id_stock").val(data[0].id_stock);
+      $("#item_code").val(data[0].item_code);
+      $("#old_idstock").val(data[0].id_stock);
+      $("#nama_stock").val(data[0].nama_stock);
+      $("#keterangan").val(data[0].keterangan);
+
       $("#update").modal('show');
 
 

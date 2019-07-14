@@ -28,6 +28,12 @@ class Inventory extends CI_Controller {
 	        if(!$this->session->userdata('username')){
 	            redirect('../');
 	        }
+					elseif ($this->session->userdata('level') == "user") {
+			      redirect('dashUser');
+			    }
+					elseif ($this->session->userdata('level') == "admin") {
+			      redirect('dashAdmin');
+			    }
 	    }
 
 
@@ -41,7 +47,7 @@ class Inventory extends CI_Controller {
 		$data['kategori2'] = $this->AdminBarang->fetch_kat2('id_kategori');
 
 
-		$this->load->view('admin/dashboard/inventory.php',$data);
+		$this->load->view('sa/dashboard/inventory.php',$data);
 
 	}
 
@@ -64,7 +70,7 @@ class Inventory extends CI_Controller {
 	{
 
 				$this->session->set_flashdata('errors', validation_errors());
-				redirect('../admin/inventory');
+				redirect('../sadmin/inventory');
 			}
 
 			else
@@ -111,7 +117,7 @@ class Inventory extends CI_Controller {
 
 		$query=$this->AdminBarang->insert($data,'barang');
 	$this->session->set_flashdata('success','Data Yang anda masukan berhasil.');
-	redirect('../admin/listinventory');
+	redirect('../sadmin/listinventory');
 
 	}
 	}
@@ -133,7 +139,7 @@ class Inventory extends CI_Controller {
 	{
 
 				$this->session->set_flashdata('errors', validation_errors());
-				redirect('../admin/inventory');
+				redirect('../sadmin/inventory');
 			}
 
 			else
@@ -176,7 +182,7 @@ class Inventory extends CI_Controller {
 
 
 	$this->session->set_flashdata('success','Data Yang anda masukan berhasil.');
-	redirect('../admin/liststock');
+	redirect('../sadmin/liststock');
 
 	}
 	}
