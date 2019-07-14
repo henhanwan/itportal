@@ -178,9 +178,17 @@ function updatestock($data, $oldidstock) {
  }
 
  public function deletestocktrans($where, $table){
-   $this->db->where($where);
-   $this->db->delete($table);
- }
+
+      $delete=$this->db->where($where)->delete($table);
+
+   }
+
+   public function deletestock($where, $table2){
+
+        $delete=$this->db->where($where)->delete($table2);
+
+     }
+
 
  public function get_status(){
    $result = $this->db->select('id_status,status')->get('status_asset')->result_array();
