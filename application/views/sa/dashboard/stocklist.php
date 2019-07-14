@@ -101,7 +101,10 @@
             <td scope="row"><?php echo $row->Keterangan?></td>
 
             <td scope="row">
-              <a href="<?php echo base_url(); ?>sadmin/listinventory/delete/<?php echo $row->id_stock?>" role="button" class="btn btn-danger">Delete</a>
+              <?php if ($row->quantity == 0):?>
+
+              <a href="<?php echo base_url(); ?>sAdmin/liststock/deletestock/<?php echo $row->id_stock?>" role="button" class="btn btn-danger">Delete</a>
+            <?php endif; ?>
 <button class="btn btn-info edit_data" data-toogle="modal" data-target="#update" id="<?php echo $row->id_stock?>" >Update</button>
               <th>
           </tr>
