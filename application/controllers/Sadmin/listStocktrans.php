@@ -137,6 +137,7 @@ $data = array(
 
 
 
+
 public function deletestocktrans($id)
 {
 	$this->load->library('session');
