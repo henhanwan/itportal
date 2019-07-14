@@ -106,7 +106,7 @@
             <td scope="row"><?php echo $row->nama_emp?></td>
 
             <td scope="row">
-              <a href="<?php echo base_url(); ?>sAdmin/listinventory/delete/<?php echo $row->id_trans?>" role="button" class="btn btn-danger">Delete</a>
+              
               <button class="btn btn-info edit_data" data-toogle="modal" data-target="#update" id="<?php echo $row->id_trans?>" >Update</button>
 
               <th>
