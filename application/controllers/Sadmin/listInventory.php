@@ -27,6 +27,12 @@ class listinventory extends CI_Controller {
 	        if(!$this->session->userdata('username')){
 	            redirect('../');
 	        }
+					elseif ($this->session->userdata('level') == "user") {
+			      redirect('dashUser');
+			    }
+					elseif ($this->session->userdata('level') == "admin") {
+			      redirect('dashAdmin');
+			    }
 	    }
 
 public function index()

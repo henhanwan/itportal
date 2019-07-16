@@ -9,10 +9,10 @@
   <nav class="navbar navbar-default topNavbar">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="<?php echo base_url('dashadmin') ?>">ITPORTAL</a>
+        <a class="navbar-brand" href="<?php echo base_url('dashUser') ?>">ITPORTAL</a>
       </div>
       <ul class="nav navbar-nav">
-        <li class="active"><a href="<?php echo base_url('dashadmin') ?>">Home</a></li>
+        <li class="active"><a href="<?php echo base_url('dashUser') ?>">Home</a></li>
         <li><a href="#">Profile</a></li>
         <li><a href="#">Reset Password</a></li>
         <li><a href="../Auth/logout">Logout</a></li>
@@ -51,7 +51,7 @@
 
 
 
-      <form class="form-inline" action="<?php echo base_url();?>admin/listinventory" method="post">
+      <form class="form-inline" action="<?php echo base_url();?>user/listinventory" method="post">
         <select class="form-control" name="field">
             <option selected="selected" disabled="disabled" value="">Filter By</option>
             <option value="id_trans">Trans Number</option>

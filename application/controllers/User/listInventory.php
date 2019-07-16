@@ -35,7 +35,7 @@ class listinventory extends CI_Controller {
 public function index()
 {
   $this->load->model('AdminBarang');
-  $config['base_url'] = base_url('admin/listinventory/index');
+  $config['base_url'] = base_url('user/listinventory/index');
   $config['total_rows'] = $this->db->count_all('barang');
  $config['per_page'] = 5;
  $config['uri_segment']=4;

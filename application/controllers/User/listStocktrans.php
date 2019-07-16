@@ -35,7 +35,7 @@ class liststocktrans extends CI_Controller {
 public function index()
 {
   $this->load->model('AdminStock');
-  $config['base_url'] = base_url('admin/liststocktrans/index');
+  $config['base_url'] = base_url('user/liststocktrans/index');
   $config['total_rows'] = $this->db->count_all('stock_trans');
  $config['per_page'] = 5;
  $config['uri_segment']=4;

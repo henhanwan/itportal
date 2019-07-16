@@ -28,6 +28,9 @@ class Inventory extends CI_Controller {
 	        if(!$this->session->userdata('username')){
 	            redirect('../');
 	        }
+					elseif ($this->session->userdata('level') == "user") {
+			      redirect('dashUser');
+			    }
 	    }
 
 
